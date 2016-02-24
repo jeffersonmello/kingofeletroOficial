@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <?php
-
 ini_set( 'display_errors', true );
 error_reporting( E_ALL );
+$pagina     = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
+$pc = $pagina;
 ?>
 <html lang="en">
 	<head>
@@ -57,39 +58,25 @@ error_reporting( E_ALL );
 					<!--	<p>Lorem ipsum dolor sit amet, delectus consequatur, similique quia!</p>-->
 					</header>
 
-					<!-- <div class="row 150%">
-						<div class="4u 12u$(medium)">
-							<section class="box">
-								<i class="icon big rounded color1 fa-cloud"></i>
-								<h3>Lorem ipsum dolor</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quam consectetur quibusdam magni minus aut modi aliquid.</p>
-							</section>
-						</div>
-						<div class="4u 12u$(medium)">
-							<section class="box">
-								<i class="icon big rounded color9 fa-desktop"></i>
-								<h3>Consectetur adipisicing</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ullam consequatur repellat debitis maxime.</p>
-							</section>
-						</div>
-						<div class="4u$ 12u$(medium)">
-							<section class="box">
-								<i class="icon big rounded color6 fa-rocket"></i>
-								<h3>Adipisicing elit totam</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eaque eveniet, nesciunt molestias. Ipsam, voluptate vero.</p>
-							</section>
-						</div>
-					</div>
-				</div> -->
 			</section>
 
 			<section id="main" class="wrapper">
 			<div class="container">
 
+
 <?
 					include "config.php";
+					$total_reg = "5";
 
-					$sql = mysql_query("SELECT * FROM musicas_home order by guid desc limit 10");
+
+					$inicio = $pc - 1;
+  				$inicio = $inicio * $total_reg;
+
+					$sql = mysql_query("SELECT * FROM musicas_home order by guid desc LIMIT $inicio,$total_reg");
+					$tr = mysql_num_rows($sql); // verifica o número total de registros
+					$tp = $tr / $total_reg; // verifica o número total de páginas
+
+
 					while($linha = mysql_fetch_array($sql)){
 						$titulo= $linha["titulo"];
 						$texto= $linha["texto"];
@@ -110,89 +97,45 @@ error_reporting( E_ALL );
 		echo	"</header>";
 
 	}
+	$anterior = $pc -1;
+	$proximo = $pc +1;
+
+	echo  "<ul class='actions'>";
+
+	if ($pc>1) {
+		echo "<li><a href='?pagina=$anterior' class='button alt small'>Anterior</a></li> ";
+	}
+
+
+	if ($pc<$tp) {
+		echo "<li><a href='?pagina=$proximo'class='button alt small'>Próxima</a></li> ";
+
+	}
+
+	if ($pc=$tp) {
+		echo "<li><a href='?pagina=$proximo'class='button alt small'>Próxima</a></li> ";
+		echo "</ul>";
+ }
 
 mysql_close($conexao);
 ?>
 		</div>
 	</section>
-
-
-		<!-- Two
-			<section id="two" class="wrapper style2 special">
-				<div class="container">
-					<header class="major">
-						<h2>Lorem ipsum dolor sit</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, autem.</p>
-					</header>
-					<section class="profiles">
-						<div class="row">
-							<section class="3u 6u(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Lorem ipsum</h4>
-								<p>Lorem ipsum dolor</p>
-							</section>
-							<section class="3u 6u$(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Voluptatem dolores</h4>
-								<p>Ullam nihil repudi</p>
-							</section>
-							<section class="3u 6u(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Doloremque quo</h4>
-								<p>Harum corrupti quia</p>
-							</section>
-							<section class="3u$ 6u$(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Voluptatem dicta</h4>
-								<p>Et natus sapiente</p>
-							</section>
-						</div>
-					</section> -->
 					<footer>
 						<div>
 							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- novokingteste -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-3917397657053754"
-     data-ad-slot="9144337227"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+							<!-- wordpress -->
+							<ins class="adsbygoogle"
+							     style="display:block"
+							     data-ad-client="ca-pub-3917397657053754"
+							     data-ad-slot="4746746424"
+							     data-ad-format="auto"></ins>
+							<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
 						</div>
 					</footer>
 
-
-		<!-- Three
-			<section id="three" class="wrapper style3 special">
-				<div class="container">
-					<header class="major">
-						<h2>Consectetur adipisicing elit</h2>
-						<p>Lorem ipsum dolor sit amet. Delectus consequatur, similique quia!</p>
-					</header>
-				</div>
-				<div class="container 50%">
-					<form action="#" method="post">
-						<div class="row uniform">
-							<div class="6u 12u$(small)">
-								<input name="name" id="name" value="" placeholder="Name" type="text">
-							</div>
-							<div class="6u$ 12u$(small)">
-								<input name="email" id="email" value="" placeholder="Email" type="email">
-							</div>
-							<div class="12u$">
-								<textarea name="message" id="message" placeholder="Message" rows="6"></textarea>
-							</div>
-							<div class="12u$">
-								<ul class="actions">
-									<li><input value="Send Message" class="special big" type="submit"></li>
-								</ul>
-							</div>
-						</div>
-					</form>
-				</div>
-			</section> -->
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -209,36 +152,7 @@ mysql_close($conexao);
 									<li><a href="#">Sobre</a></li>
 								</ul>
 							</section>
-				<!--			<section class="3u 6u$(medium) 12u$(small)">
-								<h3>Culpa quia, nesciunt</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Reiciendis dicta laboriosam enim</a></li>
-									<li><a href="#">Corporis, non aut rerum</a></li>
-									<li><a href="#">Laboriosam nulla voluptas, harum</a></li>
-									<li><a href="#">Facere eligendi, inventore dolor</a></li>
-								</ul>
-							</section>
-							<section class="3u 6u(medium) 12u$(small)">
-								<h3>Neque, dolore, facere</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Distinctio, inventore quidem nesciunt</a></li>
-									<li><a href="#">Explicabo inventore itaque autem</a></li>
-									<li><a href="#">Aperiam harum, sint quibusdam</a></li>
-									<li><a href="#">Labore excepturi assumenda</a></li>
-								</ul>
-							</section>
-							<section class="3u$ 6u$(medium) 12u$(small)">
-								<h3>Illum, tempori, saepe</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Recusandae, culpa necessita nam</a></li>
-									<li><a href="#">Cupiditate, debitis adipisci blandi</a></li>
-									<li><a href="#">Tempore nam, enim quia</a></li>
-									<li><a href="#">Explicabo molestiae dolor labore</a></li>
-								</ul>
-							</section> -->
+
 						</div>
 					</section>
 					<div class="row">

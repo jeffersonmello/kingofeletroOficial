@@ -49,9 +49,17 @@
 
 					<a href="#" class="image fit"><img width="100px" height="600px"src="http://www.dudesnews.com/wp-content/uploads/2013/10/EDM-croud-playlist.jpg" alt="" /></a>
 
-
-
-
+										<div class="table-wrapper">
+											<table>
+													<thead>
+															<tr>
+																<th>Titulo</th>
+																<th>Play</th>
+																<th>Pause</th>
+																<th>Dowload</th>
+														  	</tr>
+														</thead>
+															<tbody>
 <?
 					include "config.php";
 
@@ -64,22 +72,28 @@
 						$musicalink= $linha["musicalink"];
 
 
+		echo	"<tr>";
+		echo	"<td>$titulo</td>";
+//		echo	"<td>$texto</td>";
+		echo  "<td><a href='$downloadlink' class='button icon fa-download'>Download</a></td>";
+		echo	"<td><audio controls='controls' loop preload='preload title='Abaçaiado - O Teatro Mágico'> <source type='audio/ogg' src='$musicalink' /> <source type='audio/mpeg' src='$musicalink' /> <a href='$musicalink'>$nomearquivo</a> </audio></td>";
+		echo "<td> Nada </td>";
+		echo "</tr>";
 
-		echo	"<header>";
-		echo	"<h3>$titulo</h3>";
-		echo	"<p>$texto</p>";
-		echo	"<ul class='actions'>";
-		echo  "<li><a href='$downloadlink' class='button icon fa-download'>Download</a></li>";
-		echo	"<li><audio controls='controls' loop preload='preload title='Abaçaiado - O Teatro Mágico'> <source type='audio/ogg' src='$musicalink' /> <source type='audio/mpeg' src='$musicalink' /> <a href='$musicalink'>$nomearquivo</a> </audio></li>";
-		echo	"</ul>";
-		echo	"<hr />";
-		echo	"</header>";
 
 	}
 
 mysql_close($conexao);
 ?>
-		</div>
+</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="2"></td>
+									<td>100.00</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
 	</section>
 
 		<!-- Footer -->
