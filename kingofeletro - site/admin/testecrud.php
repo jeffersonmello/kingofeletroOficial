@@ -95,16 +95,14 @@
         <a class="menu-top-active" class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastros
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a class="menu-top-active" href="cad_musicahome.php">Cadastro de Música Home</a></li>
-          <li><a class="menu-section" href="#">Page 1-2</a></li>
+          <li><a class="menu-top-active" href="cad_musicahome.php">Música Home</a></li>
+          <li><a class="menu-section" href="#">Playlist</a></li>
           <li><a class="menu-section" href="#">Page 1-3</a></li>
         </ul>
       </li>
                             <li><a href="ui.html">UI Elements</a></li>
                             <li><a href="table.html">Data Tables</a></li>
                             <li><a href="forms.html">Forms</a></li>
-                             <li><a href="login.html">Login Page</a></li>
-                            <li><a href="blank.html">Blank Page</a></li>
 
                         </ul>
                     </div>
@@ -118,7 +116,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">Visualizar</h4>
+                    <h4 class="page-head-line">Playlist</h4>
                 </div>
 
             </div>
@@ -131,12 +129,12 @@
                     <div id="main" class="container-fluid">
                         <div id="top" class="row">
                           <div class="col-md-3">
-                                 <h2>Itens</h2>
+                                 <h2>Músicas</h2>
                              </div>
 
                              <div class="col-md-6">
                                  <div class="input-group h2">
-                                     <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Itens">
+                                     <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar">
                                      <span class="input-group-btn">
                                          <button class="btn btn-primary" type="submit">
                                              <span class="glyphicon glyphicon-search"></span>
@@ -146,7 +144,7 @@
                              </div>
 
                              <div class="col-md-3">
-                                 <a href="add.html" class="btn btn-primary pull-right h2">Novo Item</a>
+                                 <a href="add.html" class="btn btn-primary pull-right h2" data-toggle="modal" data-target="#myModal" >Novo Música</a>
                              </div>
                         </div> <!-- /#top -->
 
@@ -158,10 +156,12 @@
                                   <table class="table table-striped" cellspacing="0" cellpadding="0">
                                       <thead>
                                           <tr>
-                                              <th>ID</th>
-                                              <th>Header 1</th>
-                                              <th>Header 2</th>
-                                              <th>Header 3</th>
+                                              <th>GUID</th>
+                                              <th>Titulo</th>
+                                              <th>Texto</th>
+                                              <th>Link de Download</th>
+                                              <th>Nome do Arquivo</th>
+                                              <th>Local da Musica</th>
                                               <th class="actions">Ações</th>
                                            </tr>
                                       </thead>
@@ -169,9 +169,11 @@
 
                                           <tr>
                                               <td>1001</td>
-                                              <td>Lorem ipsum dolor sit amet, consectetur adipiscing</td>
-                                              <td>Jes</td>
-                                              <td>01/01/2015</td>
+                                              <td>Titanic - Rubin Sculz</td>
+                                              <td>Faça o download ou ouça agora</td>
+                                              <td>http://naotem.com</td>
+                                              <td>naotem.mp3</td>
+                                              <td>http://naotem.com</td>
                                               <td class="actions">
                                                   <a class="btn btn-success btn-xs" href="view.html">Visualizar</a>
                                                   <a class="btn btn-warning btn-xs" href="edit.html">Editar</a>
@@ -185,30 +187,21 @@
                                </div>
                         </div> <!-- /#list -->
 
-                        <div id="bottom" class="row">
-                          <div id="bottom" class="row">
-                              <div class="col-md-12">
 
-                                  <ul class="pagination">
-                                      <li class="disabled"><a>&lt; Anterior</a></li>
-                                      <li class="disabled"><a>1</a></li>
-                                      <li><a href="#">2</a></li>
-                                      <li><a href="#">3</a></li>
-                                      <li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
-                                  </ul><!-- /.pagination -->
-
-                              </div>
-                        </div> <!-- /#bottom -->
-                    </div>  <!-- /#main -->
-
-                     <button id="button" class="btn btn-default"  data-toggle="modal" data-target="#myModal" >Cadastrar</button>
+                    <ul class="pagination">
+                        <li class="disabled"><a>&lt; Anterior</a></li>
+                        <li class="disabled"><a>1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
+                    </ul><!-- /.pagination -->
 
                      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                          <div class="modal-dialog">
                              <div class="modal-content">
                                  <div class="modal-header">
                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                     <h4 class="modal-title" id="myModalLabel">Cadastro de Musica Lightbox teste</h4>
+                                     <h4 class="modal-title" id="myModalLabel">Cadastro de Musica</h4>
                                  </div>
                                  <div class="modal-body">
                                    <form name="inserir" id="inserir" method="post" action="inserir-musica.php">
@@ -236,7 +229,8 @@
                                        <label for="exampleInputEmail1">Link da musica</label>
                                        <input name="musicalink" type="text" class="form-control" id="musicalink" placeholder="Link ou diretorio aonde a musica está" />
                                      </div>
-                                     <button type="submit" name="Submit" id="button" class="btn btn-default"  data-toggle="modal" data-target="#myModal" >Cadastrar</button>
+                                        <button type="submit" name="Submit" id="button" class="btn btn-default"  data-toggle="modal" data-target="#myModal" >Salvar</button>
+                                        <button type="button"  class="btn btn-default" data-dismiss="modal"  >Cancelar</button>
                                        </form>
                                  </div>
                                  <div class="modal-footer">

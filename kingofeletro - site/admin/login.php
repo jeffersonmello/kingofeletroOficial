@@ -1,35 +1,4 @@
 ﻿<!DOCTYPE html>
-<?
-	ob_start();
-	if($acao==logar){
-		include "config.php";
-
-		$usuario = $_POST["usuario"];
-		$senha = $_POST["senha"];
-
-		$sql = mysql_query("select * from usuario where usuario='$usuario' AND '$senha'");
-		$sql2 = mysql_query("select `usuario`, `senha`, `nivel`from usuario where usuario='$usuario' LIMIT 0,1", $conexao);
-		$busca = mysql_num_rows($sql);
-		$array = mysql_fetch_array($sql2);
-		$usuario = $array["usuario"];
-		$senha = $array["senha"];
-		$nivel = $array["nivel"];
-
-
-		if(($busca > 0) && ($array > 0)){
-			setcookie("usuario", $usuario);
-			setcookie("senha", $senha);
-			setcookie("nivel", $nivel);
-			header("location: index.php");
-		}
-		else{
-			echo"Erro ao se logar.";
-			}
-	}
-?>
-
-
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
@@ -109,12 +78,14 @@
                     <hr />
                      <h4> Ou Login com <strong>Conta King of Eletro :</strong></h4>
                     <br />
-                     <label>Email ID : </label>
-                        <input name="usuario" type="text" class="form-control" />
+										<form method="post" action="logar.php" id="formlogin" name="formlogin" >
+                     		<label>Email ID : </label>
+                        <input name="usuario" id="usuario" type="text" class="form-control" />
                         <label>Senha :  </label>
-                        <input name="senha" type="password" class="form-control" />
+                        <input name="senha" id="senha" type="password" class="form-control" />
                         <hr />
                         <input type="submit" name="Submit" value="logar" class="btn btn-default"/>
+										</form>
                 </div>
                 <div class="col-md-6">
                     <div class="alert alert-info">

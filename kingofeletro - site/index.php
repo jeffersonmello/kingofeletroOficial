@@ -112,10 +112,12 @@ $pc = $pagina;
 
 	}
 
+
 	if ($pc=$tp) {
 		echo "<li><a href='?pagina=$proximo'class='button alt small'>Próxima</a></li> ";
 		echo "</ul>";
- }
+	}
+
 
 mysql_close($conexao);
 ?>

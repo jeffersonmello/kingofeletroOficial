@@ -1,4 +1,16 @@
 ﻿<!DOCTYPE html>
+<?php
+ob_start();
+session_start();
+    if((!isset ($_SESSION['usuario']) == true) and (!isset ($_SESSION['senha']) == true))
+{
+	unset($_SESSION['usuario']);
+	unset($_SESSION['senha']);
+	header('location:login.php');
+	}
+
+  $logado = $_SESSION['login'];
+?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
@@ -363,4 +375,5 @@
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
 </body>
+<? ob_end_flush();	?>
 </html>
