@@ -17,7 +17,7 @@ mysql_query("INSERT INTO musicas_home (titulo, texto, downloadlink, nomearquivo,
 
 mysql_close($conexao);
 
-header("Location: cadastros.php?accao=musicahome");
+header("Location: cad_musicahome.php?accao=musicahome");
 exit();
 
 ?>
