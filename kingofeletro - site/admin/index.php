@@ -108,7 +108,8 @@ session_start();
       <span class="caret"></span></a>
       <ul class="dropdown-menu">
         <li><a class="menu-section" href="cad_musicahome.php">Cadastro de Música Home</a></li>
-        <li><a class="menu-section" href="#">Cadastro de PlayList</a></li>
+        <li><a class="menu-section" href="cad_playlist.php">Cadastro de PlayList</a></li>
+        <li><a class="menu-section" href="cad_download.php">Cadastro de Downloads</a></li>
         <li><a class="menu-section" href="#">Cadastro de Noticias</a></li>
       </ul>
     </li>

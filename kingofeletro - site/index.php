@@ -33,7 +33,7 @@ $pc = $pagina;
 						<li><a href="index.php">Home</a></li>
 						<li><a href="musicas.php">Músicas</a></li>
 						<li><a href="contato.php">Contato</a></li>
-						<li><a href="radio.php" class="button special">Rádio</a></li>
+						<li><a href="radio.php" target="_blank" class="button special">Rádio</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -106,17 +106,18 @@ $pc = $pagina;
 		echo "<li><a href='?pagina=$anterior' class='button alt small'>Anterior</a></li> ";
 	}
 
-
-	if ($pc<$tp) {
+	 if ($pc<$tp) {
 		echo "<li><a href='?pagina=$proximo'class='button alt small'>Próxima</a></li> ";
 
-	}
-
-
-	if ($pc=$tp) {
+	} else {
 		echo "<li><a href='?pagina=$proximo'class='button alt small'>Próxima</a></li> ";
 		echo "</ul>";
 	}
+
+
+//	if ($pc=$tp) {
+//		echo "</ul>";
+//	}
 
 
 mysql_close($conexao);
@@ -147,11 +148,10 @@ mysql_close($conexao);
 							<section class="3u 6u(medium) 12u$(small)">
 								<h3>King of Eletro</h3>
 								<ul class="unstyled">
-									<li><a href="#">Rádio Online</a></li>
-									<li><a href="#">Pedir uma música</a></li>
-									<li><a href="#">Músicas</a></li>
-									<li><a href="#">Download</a></li>
-									<li><a href="#">Sobre</a></li>
+									<li><a href="radio.php">Rádio Online</a></li>
+									<li><a href="pedirmusica.php">Pedir uma música</a></li>
+									<li><a href="musicas.php">Músicas</a></li>
+									<li><a href="sobre.php">Sobre</a></li>
 								</ul>
 							</section>
 
@@ -169,7 +169,7 @@ mysql_close($conexao);
 									<a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
 								</li>
 								<li>
-									<a class="icon rounded fa-google-plus"><span class="label">Google+</span></a>
+									<a href="https://plus.google.com/b/108172637382157928790/108172637382157928790/posts?gmbpt=true&pageId=108172637382157928790&hl=pt-BR"  target="_blank" class="icon rounded fa-google-plus"><span  class="label">Google+</span></a>
 								</li>
 								<li>
 									<a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>

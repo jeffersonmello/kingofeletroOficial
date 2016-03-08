@@ -1,16 +1,6 @@
 <!DOCTYPE html>
-<?php
-ini_set( 'display_errors', true );
-error_reporting( E_ALL );
-$pagina     = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
-$pc = $pagina;
-$guidEdit;
-$guidDelete;
-?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <!-- Basic Page Needs
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
@@ -102,15 +92,14 @@ $guidDelete;
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a  href="index.html">Dashboard</a></li>
                             <li class="dropdown">
-                              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastros
-                              <span class="caret"></span></a>
-                              <ul class="dropdown-menu">
-                                <li><a class="menu-section" href="cad_musicahome.php">Cadastro de Música Home</a></li>
-                                <li><a class="menu-section" href="cad_playlist.php">Cadastro de PlayList</a></li>
-                                <li><a class="menu-section" href="cad_download.php">Cadastro de Downloads</a></li>
-                                <li><a class="menu-section" href="#">Cadastro de Noticias</a></li>
-                              </ul>
-                            </li>
+        <a class="menu-top-active" class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastros
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a class="menu-top-active" href="cad_musicahome.php">Música Home</a></li>
+          <li><a class="menu-section" href="#">Playlist</a></li>
+          <li><a class="menu-section" href="#">Page 1-3</a></li>
+        </ul>
+      </li>
                             <li><a href="ui.html">UI Elements</a></li>
                             <li><a href="table.html">Data Tables</a></li>
                             <li><a href="forms.html">Forms</a></li>
@@ -155,7 +144,7 @@ $guidDelete;
                              </div>
 
                              <div class="col-md-3">
-                                 <a href="add.html" class="btn btn-primary pull-right h2" data-toggle="modal" data-target="#myModal" >Nova Música</a>
+                                 <a href="add.html" class="btn btn-primary pull-right h2" data-toggle="modal" data-target="#myModal" >Novo Música</a>
                              </div>
                         </div> <!-- /#top -->
 
@@ -164,7 +153,7 @@ $guidDelete;
                           <div id="list" class="row">
 
                               <div class="table-responsive col-md-12">
-                                  <table class="table table-hover" cellspacing="0" cellpadding="0">
+                                  <table class="table table-striped" cellspacing="0" cellpadding="0">
                                       <thead>
                                           <tr>
                                               <th>GUID</th>
@@ -177,120 +166,34 @@ $guidDelete;
                                            </tr>
                                       </thead>
                                       <tbody>
-<?
-                    include "config.php";
-                    $total_reg = "30";
 
-                    $guidEdit = "0";
-                    $guidDelete = "0";
+                                          <tr>
+                                              <td>1001</td>
+                                              <td>Titanic - Rubin Sculz</td>
+                                              <td>Faça o download ou ouça agora</td>
+                                              <td>http://naotem.com</td>
+                                              <td>naotem.mp3</td>
+                                              <td>http://naotem.com</td>
+                                              <td class="actions">
+                                                  <a class="btn btn-success btn-xs" href="view.html">Visualizar</a>
+                                                  <a class="btn btn-warning btn-xs" href="edit.html">Editar</a>
+                                                  <a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>
+                                              </td>
+                                          </tr>
 
-                    $inicio = $pc - 1;
-                    $inicio = $inicio * $total_reg;
+                                      </tbody>
+                                   </table>
 
-                    $sql = mysql_query("SELECT * FROM musicas_home LIMIT $inicio,$total_reg");
-                    $tr = mysql_num_rows($sql); // verifica o número total de registros
-                    $tp = $tr / $total_reg; // verifica o número total de páginas
-
-
-                    while($linha = mysql_fetch_array($sql)){
-                    $guid= $linha["guid"];
-                    $titulo= $linha["titulo"];
-                    $texto= $linha["texto"];
-                    $downloadlink = $linha["downloadlink"];
-                    $nomearquivo= $linha["nomearquivo"];
-                    $musicalink= $linha["musicalink"];
+                               </div>
+                        </div> <!-- /#list -->
 
 
-// Tabela
-                    echo  "<tr>";
-                    echo  "<td>$guid</td>";
-                    echo  "<td>$titulo</td>";
-                    echo  "<td>$texto</td>";
-                    echo  "<td>$downloadlink</td>";
-                    echo  "<td>$nomearquivo</td>";
-                    echo  "<td>$musicalink</td>";
-                    echo  "<td class='actions'>";
-                    echo  "<a class='btn btn-success btn-xs glyphicon glyphicon-eye-open' href='view.html' data-toggle='modal' data-target='#$guid'></a>";
-                    echo  "<a> </a>";
-                    echo  "<a class='btn btn-warning btn-xs glyphicon glyphicon-pencil' href='edit.html' data-toggle='modal' data-target='#$guidEdit'></a>";
-                    echo  "<a> </a>";
-                    echo  "<a class='btn btn-danger btn-xs glyphicon glyphicon-minus'  href='#' data-toggle='modal' data-target='#$guidDelete'></a>";
-                    echo  "</td>";
-                    echo  "</tr>";
-
-
-
-echo "<div class='modal fade' id='$guid' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;'>";
-echo    "<div class='modal-dialog'>";
-echo        "<div class='modal-content'>";
-echo            "<div class='modal-header'>";
-echo                "<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>";
-echo                "<h4 class='modal-title' id='myModalLabel'>Visualizar Musica</h4>";
-echo            "</div>";
-echo            "<div class='modal-body'>";
-echo              "<form name='inserir' id='inserir' method='post' action='inserir-musica.php'>";
-echo                "<fieldset disabled>";
-echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Titulo</label>";
-echo                  "<input name='titulo' type='text' class='form-control' id='titulo' value='$titulo' placeholder='Titulo da Música' />";
-echo                "</div>";
-
-echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Texto da Musica</label>";
-echo                  "<input name='texto' type='text' class='form-control' id='texto' value='$texto' placeholder='Faça o download ou ouça esta música' />";
-echo                "</div>";
-
-echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Link para download</label>";
-echo                  "<input name='downloadlink' type='text' class='form-control' id='downloadlink' value='$downloadlink' placeholder='Link de download' />";
-echo                "</div>";
-
-echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Nome do arquivo</label>";
-echo                  "<input name='nomearquivo' type='text' class='form-control' id='nomearquivo' value='$nomearquivo' placeholder='Ex: avicii.mp3' />";
-echo                "</div>";
-
-echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Link da musica</label>";
-echo                  "<input name='musicalink' type='text' class='form-control' id='musicalink' value='$musicalink' placeholder='Link ou diretorio aonde a musica está' />";
-echo                "</div>";
-echo                  "</fieldset>";
-echo                   "<button type='button'  class='btn btn-default' data-dismiss='modal'  >Fechar</button>";
-echo                  "</form>";
-echo            "</div>";
-echo            "<div class='modal-footer'>";
-echo            "</div>";
-echo        "</div>";
-echo   "</div>";
-echo "</div>";
-}
-mysql_close($conexao);
-?>
-
-</tbody>
-</table>
-</div>
-</div>
-
-
-<?
-                	   $anterior = $pc -1;
-                	   $proximo = $pc +1;
-
-
-                   if ($pc>1) {
-                   echo  "<li<a><a href='?pagina=$anterior'>&lt; Anterior</a></li>";
-                      }
-                  if ($pc<$tp) {
-                  echo  "<ul class='pagination'>";
-                  echo  "<li <a class='next'><a href='?pagina=$proximo'  rel='next'>Próximo &gt;</a></li>";
-                      }
-                  if ($pc=$tp) {
-                  echo  "<ul class='pagination'>";
-                  echo  "<li <a class='next'><a  href='?pagina=$proximo' rel='next'>Próximo &gt;</a></li>";
-                          }
-
-?>
+                    <ul class="pagination">
+                        <li class="disabled"><a>&lt; Anterior</a></li>
+                        <li class="disabled"><a>1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
                     </ul><!-- /.pagination -->
 
                      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -326,8 +229,8 @@ mysql_close($conexao);
                                        <label for="exampleInputEmail1">Link da musica</label>
                                        <input name="musicalink" type="text" class="form-control" id="musicalink" placeholder="Link ou diretorio aonde a musica está" />
                                      </div>
-                                        <button type="submit" name="Submit" id="button" class="btn btn-default glyphicon glyphicon-ok-sign"  data-toggle="modal" data-target="#myModal" >Salvar</button>
-                                        <button type="button"  class="btn btn-default glyphicon-remove-sign" data-dismiss="modal"  >Cancelar</button>
+                                        <button type="submit" name="Submit" id="button" class="btn btn-default"  data-toggle="modal" data-target="#myModal" >Salvar</button>
+                                        <button type="button"  class="btn btn-default" data-dismiss="modal"  >Cancelar</button>
                                        </form>
                                  </div>
                                  <div class="modal-footer">
@@ -338,8 +241,6 @@ mysql_close($conexao);
 
 
 
-
-
                    </div>
                </div>
 
@@ -347,8 +248,6 @@ mysql_close($conexao);
        </div>
    </div>
 </div>
-</div>
-
     <!-- CONTENT-WRAPPER SECTION END-->
     <footer>
         <div class="container">
