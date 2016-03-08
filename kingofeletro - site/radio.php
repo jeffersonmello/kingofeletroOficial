@@ -8,6 +8,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>King of Eletro - Oficial</title>
+		<link rel="icon" type="image/png" href="favicon.png" />
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -46,21 +47,35 @@
 						<h2>Rádio King of Eletro Online</h2>
 					</header>
 
-          <?
-          					include "config.php";
-
-          					$sql = mysql_query("SELECT * FROM radio");
-          					while($linha = mysql_fetch_array($sql)){
-          						$embed= $linha["titulo"];
-              echo "<div>";
-          		echo	$embed;
-              echo "</div>";
-          	}
-
-          mysql_close($conexao);
-          ?>
+					<script>
+			window.open("radio/radio.php","","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,WIDTH=480,HEIGHT=175, top=180, left=150");
+			</script>
 		</div>
 	</section>
+	<footer>
+		<div>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- wordpress -->
+			<ins class="adsbygoogle"
+					 style="display:block"
+					 data-ad-client="ca-pub-3917397657053754"
+					 data-ad-slot="4746746424"
+					 data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	</footer>
+
+	<!--Start of Zopim Live Chat Script-->
+	<script type="text/javascript">
+	window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+	d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+	_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+	$.src="//v2.zopim.com/?2QjOCzEbJREjXQlGyZlMOA6AUhFdVdvd";z.t=+new Date;$.
+	type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+	</script>
+	<!--End of Zopim Live Chat Script-->
 
 		<!-- Footer -->
 		<footer id="footer">

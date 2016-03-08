@@ -938,6 +938,26 @@
 		body.landing #header nav a {
 			color: rgba(255, 255, 255, 0.5);
 		}
+		
+.navbar-fixed-top + .content-container {
+	margin-top: 70px;
+}
+.content-container {
+	margin: 0 130px;
+}
+
+
+
+#top-link-block.affix-top {
+    position: absolute; /* allows it to "slide" up into view */
+    bottom: -82px; /* negative of the offset - height of link element */
+    left: 10px; /* padding from the left side of the window */
+}
+#top-link-block.affix {
+    position: fixed; /* keeps it on the bottom once in view */
+    bottom: 18px; /* height of link element */
+    left: 10px; /* padding from the left side of the window */
+}
 
 	#header {
 		background-color: #383b43;
@@ -1217,3 +1237,4 @@
 		.grid-demo .row.flush > div:last-child span {
 			border-radius: 0 4px 4px 0;
 		}
+		

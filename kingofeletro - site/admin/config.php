@@ -3,8 +3,8 @@
 	// declarando as variáveis de conexão.
 
 	$host = "localhost";
-	$bduser = "root";
-	$bdsenha = "840854";
+	$bduser = "pristons_user2";
+	$bdsenha = "gamabeta";
 	$bd = "pristons_king";
 
 	// fim da declaração de variaveis.

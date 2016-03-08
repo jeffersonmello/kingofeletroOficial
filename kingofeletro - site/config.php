@@ -4,7 +4,7 @@
 
 	$host = "localhost";
 	$bduser = "root";
-	$bdsenha = "840854";
+	$bdsenha = "vertrigo";
 	$bd = "pristons_king";
 
 	// fim da declaração de variaveis.

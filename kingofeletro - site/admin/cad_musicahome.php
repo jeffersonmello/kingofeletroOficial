@@ -143,9 +143,17 @@ $guidDelete;
                                  <h2>Músicas</h2>
                              </div>
 
+
+  <!-- Search class like   -->
+  <?php
+    if(isset($_GET['search'])){
+        $search=($_POST['search']);
+    }
+?>
+                    <form name="pesquisa" id="pesquisa" method="post" action="">
                              <div class="col-md-6">
                                  <div class="input-group h2">
-                                     <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar">
+                                     <input name="search" class="form-control" id="search" type="text" placeholder="Pesquisar" onchange="mainInfo(this.value);">
                                      <span class="input-group-btn">
                                          <button class="btn btn-primary" type="submit">
                                              <span class="glyphicon glyphicon-search"></span>
@@ -153,13 +161,16 @@ $guidDelete;
                                      </span>
                                  </div>
                              </div>
+                    </form>
 
                              <div class="col-md-3">
-                                 <a href="add.html" class="btn btn-primary pull-right h2" data-toggle="modal" data-target="#myModal" >Nova Música</a>
+                              <a href="add.html" class="btn btn-primary pull-right h2" data-toggle="modal" data-target="#myModal" >Nova Música</a>
                              </div>
                         </div> <!-- /#top -->
 
                         <hr />
+
+
                         <div id="list" class="row">
                           <div id="list" class="row">
 
@@ -167,7 +178,7 @@ $guidDelete;
                                   <table class="table table-hover" cellspacing="0" cellpadding="0">
                                       <thead>
                                           <tr>
-                                              <th>GUID</th>
+                                              <th>#</th>
                                               <th>Titulo</th>
                                               <th>Texto</th>
                                               <th>Link de Download</th>
@@ -193,24 +204,26 @@ $guidDelete;
 
 
                     while($linha = mysql_fetch_array($sql)){
-                    $guid= $linha["guid"];
-                    $titulo= $linha["titulo"];
-                    $texto= $linha["texto"];
-                    $downloadlink = $linha["downloadlink"];
-                    $nomearquivo= $linha["nomearquivo"];
-                    $musicalink= $linha["musicalink"];
+                    $guid1= $linha["guid"];
+                    $titulo1= $linha["titulo"];
+                    $texto1= $linha["texto"];
+                    $downloadlink1 = $linha["downloadlink"];
+                    $nomearquivo1= $linha["nomearquivo"];
+                    $musicalink1= $linha["musicalink"];
 
+                    $guidEdit = ($guid1 +50);
+                    $guidDelete = ($guid1 +100);
 
 // Tabela
                     echo  "<tr>";
-                    echo  "<td>$guid</td>";
-                    echo  "<td>$titulo</td>";
-                    echo  "<td>$texto</td>";
-                    echo  "<td>$downloadlink</td>";
-                    echo  "<td>$nomearquivo</td>";
-                    echo  "<td>$musicalink</td>";
+                    echo  "<td>$guid1</td>";
+                    echo  "<td>$titulo1</td>";
+                    echo  "<td>$texto1</td>";
+                    echo  "<td>$downloadlink1</td>";
+                    echo  "<td>$nomearquivo1</td>";
+                    echo  "<td>$musicalink1</td>";
                     echo  "<td class='actions'>";
-                    echo  "<a class='btn btn-success btn-xs glyphicon glyphicon-eye-open' href='view.html' data-toggle='modal' data-target='#$guid'></a>";
+                    echo  "<a class='btn btn-success btn-xs glyphicon glyphicon-eye-open' href='view.html' data-toggle='modal' data-target='#$guid1'></a>";
                     echo  "<a> </a>";
                     echo  "<a class='btn btn-warning btn-xs glyphicon glyphicon-pencil' href='edit.html' data-toggle='modal' data-target='#$guidEdit'></a>";
                     echo  "<a> </a>";
@@ -219,8 +232,8 @@ $guidDelete;
                     echo  "</tr>";
 
 
-
-echo "<div class='modal fade' id='$guid' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;'>";
+// Modal View
+echo "<div class='modal fade' id='$guid1' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;'>";
 echo    "<div class='modal-dialog'>";
 echo        "<div class='modal-content'>";
 echo            "<div class='modal-header'>";
@@ -228,34 +241,34 @@ echo                "<button type='button' class='close' data-dismiss='modal' ar
 echo                "<h4 class='modal-title' id='myModalLabel'>Visualizar Musica</h4>";
 echo            "</div>";
 echo            "<div class='modal-body'>";
-echo              "<form name='inserir' id='inserir' method='post' action='inserir-musica.php'>";
+echo              "<form name='inserir' id='inserir' method='post' action=''>";
 echo                "<fieldset disabled>";
 echo                "<div class='form-group'>";
 echo                  "<label for='exampleInputEmail1'>Titulo</label>";
-echo                  "<input name='titulo' type='text' class='form-control' id='titulo' value='$titulo' placeholder='Titulo da Música' />";
+echo                  "<input name='titulo' type='text' class='form-control' id='titulo' value='$titulo1' placeholder='Titulo da Música' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
 echo                  "<label for='exampleInputEmail1'>Texto da Musica</label>";
-echo                  "<input name='texto' type='text' class='form-control' id='texto' value='$texto' placeholder='Faça o download ou ouça esta música' />";
+echo                  "<input name='texto' type='text' class='form-control' id='texto' value='$texto1' placeholder='Faça o download ou ouça esta música' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
 echo                  "<label for='exampleInputEmail1'>Link para download</label>";
-echo                  "<input name='downloadlink' type='text' class='form-control' id='downloadlink' value='$downloadlink' placeholder='Link de download' />";
+echo                  "<input name='downloadlink' type='text' class='form-control' id='downloadlink' value='$downloadlink1' placeholder='Link de download' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
 echo                  "<label for='exampleInputEmail1'>Nome do arquivo</label>";
-echo                  "<input name='nomearquivo' type='text' class='form-control' id='nomearquivo' value='$nomearquivo' placeholder='Ex: avicii.mp3' />";
+echo                  "<input name='nomearquivo' type='text' class='form-control' id='nomearquivo' value='$nomearquivo1' placeholder='Ex: avicii.mp3' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
 echo                  "<label for='exampleInputEmail1'>Link da musica</label>";
-echo                  "<input name='musicalink' type='text' class='form-control' id='musicalink' value='$musicalink' placeholder='Link ou diretorio aonde a musica está' />";
+echo                  "<input name='musicalink' type='text' class='form-control' id='musicalink' value='$musicalink1' placeholder='Link ou diretorio aonde a musica está' />";
 echo                "</div>";
 echo                  "</fieldset>";
-echo                   "<button type='button'  class='btn btn-default' data-dismiss='modal'  >Fechar</button>";
+echo                   "<button type='button'  class='btn btn-default glyphicon glyphicon-remove-circle' data-dismiss='modal'  > Fechar</button>";
 echo                  "</form>";
 echo            "</div>";
 echo            "<div class='modal-footer'>";
@@ -263,6 +276,84 @@ echo            "</div>";
 echo        "</div>";
 echo   "</div>";
 echo "</div>";
+
+// Modal edit
+echo "<div class='modal fade' id='$guidEdit' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;'>";
+echo    "<div class='modal-dialog'>";
+echo        "<div class='modal-content'>";
+echo            "<div class='modal-header'>";
+echo                "<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>";
+echo                "<h4 class='modal-title' id='myModalLabel'>Editar Musica</h4>";
+echo            "</div>";
+echo            "<div class='modal-body'>";
+echo              "<form name='inserir' id='inserir' method='post' action='editar-musica.php'>";
+
+echo                "<div style='display:none' class='form-group'>";
+echo                  "<label for='inputError1'>guid</label>";
+echo                  "<input name='guid' type='text' class='form-control' id='guid' value='$guid1' placeholder='Titulo da Música'/>";
+echo                "</div>";
+
+echo                "<div class='form-group'>";
+echo                  "<label for='exampleInputEmail1'>Titulo</label>";
+echo                  "<input name='titulo' type='text' class='form-control' id='titulo' value='$titulo1' placeholder='Titulo da Música' />";
+echo                "</div>";
+
+echo                "<div class='form-group'>";
+echo                  "<label for='exampleInputEmail1'>Texto da Musica</label>";
+echo                  "<input name='texto' type='text' class='form-control' id='texto' value='$texto1' placeholder='Faça o download ou ouça esta música' />";
+echo                "</div>";
+
+echo                "<div class='form-group'>";
+echo                  "<label for='exampleInputEmail1'>Link para download</label>";
+echo                  "<input name='downloadlink' type='text' class='form-control' id='downloadlink' value='$downloadlink1' placeholder='Link de download' />";
+echo                "</div>";
+
+echo                "<div class='form-group'>";
+echo                  "<label for='exampleInputEmail1'>Nome do arquivo</label>";
+echo                  "<input name='nomearquivo' type='text' class='form-control' id='nomearquivo' value='$nomearquivo1' placeholder='Ex: avicii.mp3' />";
+echo                "</div>";
+
+echo                "<div class='form-group'>";
+echo                  "<label for='exampleInputEmail1'>Link da musica</label>";
+echo                  "<input name='musicalink' type='text' class='form-control' id='musicalink' value='$musicalink1' placeholder='Link ou diretorio aonde a musica está' />";
+echo                "</div>";
+echo                   "<button type='submit' name='Submit' id='button' class='btn btn-default glyphicon glyphicon-ok-sign'  data-toggle='modal' data-target='#$guidEdit' > Salvar</button>";
+echo                   "<a> </a>";
+echo                   "<button type='button'  class='btn btn-default glyphicon glyphicon-remove-circle' data-dismiss='modal'  > Cancelar</button>";
+echo                  "</form>";
+echo            "</div>";
+echo            "<div class='modal-footer'>";
+echo            "</div>";
+echo        "</div>";
+echo   "</div>";
+echo "</div>";
+
+// Modal delete
+
+echo "<div class='modal fade' id='$guidDelete' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;'>";
+echo    "<div class='modal-dialog'>";
+echo        "<div class='modal-content'>";
+echo            "<div class='modal-header'>";
+echo                "<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>";
+echo                "<h4 class='modal-title' id='myModalLabel'>Deletar Musica</h4>";
+echo            "</div>";
+echo            "<div class='modal-body'>";
+echo              "<form name='inserir' id='inserir' method='post' action='delete-musica.php'>";
+echo                "<div style='display:none' class='form-group'>";
+echo                  "<label for='exampleInputEmail1'>guid</label>";
+echo                  "<input name='guid' type='text' class='form-control' id='guid' value='$guid1' placeholder='Titulo da Música' />";
+echo                "</div>";
+echo                   "<button type='submit' name='Submit' id='button' class='btn btn-default glyphicon glyphicon-ok-sign'  data-toggle='modal' data-target='#$guidDelete' > Deletar</button>";
+echo                   "<a> </a>";
+echo                   "<button type='button'  class='btn btn-default glyphicon glyphicon-remove-circle' data-dismiss='modal'  > Cancelar</button>";
+echo                  "</form>";
+echo            "</div>";
+echo            "<div class='modal-footer'>";
+echo            "</div>";
+echo        "</div>";
+echo   "</div>";
+echo "</div>";
+
 }
 mysql_close($conexao);
 ?>
@@ -326,8 +417,9 @@ mysql_close($conexao);
                                        <label for="exampleInputEmail1">Link da musica</label>
                                        <input name="musicalink" type="text" class="form-control" id="musicalink" placeholder="Link ou diretorio aonde a musica está" />
                                      </div>
-                                        <button type="submit" name="Submit" id="button" class="btn btn-default glyphicon glyphicon-ok-sign"  data-toggle="modal" data-target="#myModal" >Salvar</button>
-                                        <button type="button"  class="btn btn-default glyphicon-remove-sign" data-dismiss="modal"  >Cancelar</button>
+                                        <button type="submit" name="Submit" id="button" class="btn btn-default glyphicon glyphicon-ok-sign"  data-toggle="modal" data-target="#myModal" > Salvar</button>
+                                        <a> </a>
+                                        <button type="button"  class="btn btn-default glyphicon glyphicon-remove-circle" data-dismiss="modal"  > Cancelar</button>
                                        </form>
                                  </div>
                                  <div class="modal-footer">
