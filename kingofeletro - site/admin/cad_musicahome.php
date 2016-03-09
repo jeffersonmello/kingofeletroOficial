@@ -1,7 +1,13 @@
-<!DOCTYPE html>
 <?php
+ob_start();
 ini_set( 'display_errors', true );
 error_reporting( E_ALL );
+
+if(!$HTTP_COOKIE_VARS["usuario"] && !$HTTP_COOKIE_VARS["senha"]){
+header("Location: login.php");
+exit();
+}
+
 $pagina     = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
 $pc = $pagina;
 $guidEdit;
@@ -335,7 +341,7 @@ echo    "<div class='modal-dialog'>";
 echo        "<div class='modal-content'>";
 echo            "<div class='modal-header'>";
 echo                "<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>";
-echo                "<h4 class='modal-title' id='myModalLabel'>Deletar Musica</h4>";
+echo                "<h4 class='modal-title' id='myModalLabel'>Deletar esta música ?</h4>";
 echo            "</div>";
 echo            "<div class='modal-body'>";
 echo              "<form name='inserir' id='inserir' method='post' action='delete-musica.php'>";

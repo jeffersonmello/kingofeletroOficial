@@ -28,12 +28,12 @@ $pc = $pagina;
 
 		<!-- Header -->
 			<header id="header">
-				<h1><a href="index.html">king of eletro</a></h1>
+				<h1><a href="index.php">king of eletro</a></h1>
 				<nav id="nav">
 					<ul>
 						<li><a href="index.php">Home</a></li>
 						<li><a href="musicas.php">Músicas</a></li>
-						<li><a href="contato.php">Contato</a></li>
+						<li><a href="pedirmusica.php">Contato</a></li>
 						<li><a href="radio.php" target="_blank" class="button special">Rádio</a></li>
 					</ul>
 				</nav>

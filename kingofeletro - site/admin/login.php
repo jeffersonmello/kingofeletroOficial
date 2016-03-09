@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
@@ -27,9 +27,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Email: </strong>
+                    <strong>Email: tico254@gmail.com </strong>
                     &nbsp;&nbsp;
-                    <strong>Support: </strong>+
+                    <strong>Support: omegainc.tk </strong>+
                 </div>
 
             </div>
@@ -44,9 +44,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                </a>
-
             </div>
 
             <div class="left-div">
@@ -61,22 +58,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">FAÇA O LOGIN PARA ENTRAR </h4>
+                    <h4 class="page-head-line">FAÇA O LOGIN PARA ACESSAR O SISTEMA </h4>
 
                 </div>
 
             </div>
             <div class="row">
                 <div class="col-md-6">
-                   <h4> Login com facebook <strong> / </strong>Google :</h4>
-                    <br />
-                    <a href="index.html" class="btn btn-social btn-facebook">
-                            <i class="fa fa-facebook"></i>&nbsp; Facebook</a>
-                    &nbsp;OU&nbsp;
-                    <a href="index.html" class="btn btn-social btn-google">
-                            <i class="fa fa-google-plus"></i>&nbsp; Google</a>
                     <hr />
-                     <h4> Ou Login com <strong>Conta King of Eletro :</strong></h4>
+                     <h4>Login com <strong>Conta King of Eletro :</strong></h4>
                     <br />
 										<form method="post" action="logar.php" id="formlogin" name="formlogin" >
                      		<label>Email ID : </label>
@@ -89,43 +79,10 @@
                 </div>
                 <div class="col-md-6">
                     <div class="alert alert-info">
-                        This is a free bootstrap admin template with basic pages you need to craft your project.
-                        Use this template for free to use for personal and commercial use.
-                        <br />
-                         <strong> Some of its features are given below :</strong>
-                        <ul>
-                            <li>
-                                Responsive Design Framework Used
-                            </li>
-                            <li>
-                                Easy to use and customize
-                            </li>
-                            <li>
-                                Font awesome icons included
-                            </li>
-                            <li>
-                                Clean and light code used.
-                            </li>
-                        </ul>
-
+                        <strong>Painel Administrativo do Site King of Eletro </strong>
                     </div>
                     <div class="alert alert-success">
-                         <strong> Instructions To Use:</strong>
-                        <ul>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor sit ame
-                            </li>
-                            <li>
-                                 Aamet ipsum dolor sit ame
-                            </li>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor
-                            </li>
-                            <li>
-                                 Cpsum dolor sit ame
-                            </li>
-                        </ul>
-
+                         <strong>Caso não tenha acesso peça uma senha ao administrador</strong>
                     </div>
                 </div>
 

@@ -1,15 +1,14 @@
-﻿<!DOCTYPE html>
 <?php
 ob_start();
-session_start();
-    if((!isset ($_SESSION['usuario']) == true) and (!isset ($_SESSION['senha']) == true))
-{
-	unset($_SESSION['usuario']);
-	unset($_SESSION['senha']);
-	header('location:login.php');
-	}
+if(!$HTTP_COOKIE_VARS["usuario"] && !$HTTP_COOKIE_VARS["senha"]){
+header("Location: login.php");
+exit();
+}
 
-  $logado = $_SESSION['login'];
+$countMusics;
+$countMusicPlay;
+$countUsers;
+$countDownloads;
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -39,9 +38,9 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Email: </strong>
+                    <strong>Email: tico254@gmail.com</strong>
                     &nbsp;&nbsp;
-                    <strong>Support: </strong>
+                    <strong>Support: omegainc.tk </strong>
                 </div>
 
             </div>
@@ -77,19 +76,15 @@ session_start();
                                     <div class="media-body">
                                         <h4 class="media-heading">Jhon Deo Alex </h4>
                                         <h5>Developer & Designer</h5>
-
                                     </div>
                                 </div>
                                 <hr />
                                 <h5><strong>Personal Bio : </strong></h5>
                                 Anim pariatur cliche reprehen derit.
                                 <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.html" class="btn btn-danger btn-sm">Logout</a>
-
+                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="logout.php" class="btn btn-danger btn-sm">Sair</a>
                             </div>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
@@ -111,14 +106,10 @@ session_start();
         <li><a class="menu-section" href="cad_playlist.php">Cadastro de PlayList</a></li>
         <li><a class="menu-section" href="cad_download.php">Cadastro de Downloads</a></li>
         <li><a class="menu-section" href="#">Cadastro de Noticias</a></li>
+          <li><a class="menu-section" href="#">Cadastro de Usuários</a></li>
       </ul>
     </li>
-                          <li><a href="ui.html">UI Elements</a></li>
-                          <li><a href="table.html">Data Tables</a></li>
-                          <li><a href="forms.html">Forms</a></li>
-                           <li><a href="login.html">Login Page</a></li>
-                          <li><a href="blank.html">Blank Page</a></li>
-
+                          <li><a href="ui.html">Ligar Radio</a></li>
                       </ul>
                     </div>
                 </div>
@@ -132,63 +123,43 @@ session_start();
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="page-head-line">Dashboard</h4>
-
                 </div>
-
             </div>
+
             <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-success">
-                        This is a simple admin template that can be used for your small project or may be large projects. This is free for personal and commercial use.
-                    </div>
-                </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					           <div class="info-box blue-bg">
+						                 <i class="fa fa-music"></i>
+						                       <div class="count">6.674</div>
+						                        <div class="title">Músicas Home</div>
+					            </div><!--/.info-box-->
+				      </div><!--/.col-->
 
-            </div>
-            <div class="row">
-                 <div class="col-md-3 col-sm-3 col-xs-6">
-                    <div class="dashboard-div-wrapper bk-clr-one">
-                        <i  class="fa fa-venus dashboard-div-icon" ></i>
-                        <div class="progress progress-striped active">
-  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-  </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                     <div class="info-box" style="background:#66bab7">
+                             <i class="fa fa-list"></i>
+                                   <div class="count">6.674</div>
+                                    <div class="title">Playlist</div>
+                      </div><!--/.info-box-->
+              </div><!--/.col-->
 
-</div>
-                         <h5>Simple Text Here </h5>
-                    </div>
-                </div>
-                 <div class="col-md-3 col-sm-3 col-xs-6">
-                    <div class="dashboard-div-wrapper bk-clr-two">
-                        <i  class="fa fa-edit dashboard-div-icon" ></i>
-                        <div class="progress progress-striped active">
-  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-  </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                     <div class="info-box" style="background:#5691db">
+                             <i class="fa fa-cloud-download"></i>
+                                   <div class="count">6.674</div>
+                                    <div class="title">Downloads</div>
+                      </div><!--/.info-box-->
+              </div><!--/.col-->
 
-</div>
-                         <h5>Simple Text Here </h5>
-                    </div>
-                </div>
-                 <div class="col-md-3 col-sm-3 col-xs-6">
-                    <div class="dashboard-div-wrapper bk-clr-three">
-                        <i  class="fa fa-cogs dashboard-div-icon" ></i>
-                        <div class="progress progress-striped active">
-  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-  </div>
 
-</div>
-                         <h5>Simple Text Here </h5>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <div class="dashboard-div-wrapper bk-clr-four">
-                        <i  class="fa fa-bell-o dashboard-div-icon" ></i>
-                        <div class="progress progress-striped active">
-  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-  </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                     <div class="info-box" style="background:#00c3a6">
+                             <i class="fa fa-user"></i>
+                                   <div class="count">6.674</div>
+                                    <div class="title">Users</div>
+                      </div><!--/.info-box-->
+              </div><!--/.col-->
 
-</div>
-                         <h5>Simple Text Here </h5>
-                    </div>
-                </div>
 
             </div>
 
@@ -376,5 +347,4 @@ session_start();
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
 </body>
-<? ob_end_flush();	?>
 </html>

@@ -12,6 +12,7 @@ create table musicas_home (
 
 create table usuario (
 	guid integer not null auto_increment,
+	nome varchar(500) not null,
 	usuario varchar(100) not null,
 	senha varchar(100) not null,
 	tipo int not null,
