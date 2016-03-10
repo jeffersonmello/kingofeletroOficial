@@ -25,6 +25,8 @@ $playermusica = "";
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="skeleton-tabs.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -95,8 +97,27 @@ $playermusica = "";
 				}
 				</script>
 
+        <!-- Começo das Tabs
+  				–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+          <div class="container">
+              <div class="row">
+                <div class="twelve columns" >
+                  <ul class="tab-nav">
+                    <li>
+                      <a class="button alt active" href="#one">Playlist's</a>
+                    </li>
+                    <li>
+                      <a class="button alt" href="#two">Spotify</a>
+                    </li>
+                    <li>
+                      <a class="button alt" href="#three">Downloads</a>
+                    </li>
+                  </ul>
+
 			<!-- Tabela de Musicas
 				–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="one">
 										<div class="table-wrapper">
 											<table>
 													<thead>
@@ -155,10 +176,20 @@ mysql_close($conexao);
 						</table>
 					</div>
 
+</div>
 
+<div class="tab-pane" id="two">
+		<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12149943521%3Aplaylist%3A2Kj4ph6Hi2Uo51jyx8jtuL" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>
+</div>
 
-					<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12149943521%3Aplaylist%3A2Kj4ph6Hi2Uo51jyx8jtuL" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>
-	</section>
+<div class="tab-pane" id="three">
+           <h5>Tab 3</h5>
+           <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+         </div>
+</div>
+
+</section>
+
 
   <!--Start of Zopim Live Chat Script-->
   <script type="text/javascript">

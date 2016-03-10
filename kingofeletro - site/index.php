@@ -50,21 +50,29 @@ $pc = $pagina;
 				</ul>
 			</section>
 
-		<!-- One -->
+
 			<section id="one" class="wrapper style1 special">
 				<div class="container">
 					<header class="major">
-						<h2>Novas Músicas ou mais tocadas</h2>
+						<h3>Novas Músicas ou mais tocadas</h3>
 						<p>Faça download das melhores músicas do momento</p>
-					<!--	<p>Lorem ipsum dolor sit amet, delectus consequatur, similique quia!</p>-->
 					</header>
 
 			</section>
+	<div class="row">
+		<hr>
+	</div>
 
-			<section id="main" class="wrapper">
-			<div class="container">
+<div class="row">
+	<div class="one columns major">
 
-
+	</div>
+	<div class="eight columns major" width="100%">
+			<section  class="box major" width="100%">
+				<header class="major">
+				<h2>Novas Músicas ou mais tocadas</h2>
+				<p>Aqui você pode ouvir ou baixar as músicas mais tocadas do momento, só mesmo aqui na King of Eletro !!!    </p>
+				</header>
 <?
 					include "config.php";
 					$total_reg = "5";
@@ -110,23 +118,98 @@ $pc = $pagina;
 	 if ($pc<$tp) {
 		echo "<li><a href='?pagina=$proximo'class='button alt small'>Próxima</a></li> ";
 
-	} else {
-		echo "<li><a href='?pagina=$proximo'class='button alt small'>Próxima</a></li> ";
-		echo "</ul>";
 	}
 
-
-//	if ($pc=$tp) {
+//	if ((!empty($pc)) and ($pc!=$tp)){
+//		echo "<li><a href='?pagina=$proximo'class='button alt small'>Próxima</a></li> ";
 //		echo "</ul>";
 //	}
+
+if ($pc=$tp) {
+echo "<li><a href='?pagina=$proximo'class='button alt small'>Próxima</a></li> ";
+echo "</ul>";
+echo "</ul>";
+}
 
 
 mysql_close($conexao);
 ?>
-		</div>
+
 	</section>
+	</div>
+	<div class="THREE column">
+		<section  class="box">
+			<header class="major">
+			<h2>Anúncios</h2>
+			</header>
+
+			<section  class="box">
+				<header class="major">
+				<h4>Include</h4>
+				</header>
+			</section>
+
+			<section  class="box">
+				<header class="major">
+				<h4>Include</h4>
+				</header>
+			</section>
+
+			<section  class="box">
+				<header class="major">
+				<h4>Include</h4>
+				</header>
+			</section>
+
+			<section  class="box">
+				<header class="major">
+				<h4>Include</h4>
+				</header>
+			</section>
+
+			<section  class="box">
+				<header class="major">
+				<h4>Include</h4>
+				</header>
+			</section>
+
+			<section  class="box">
+				<header class="major">
+				<h4>Include</h4>
+				</header>
+			</section>
+
+			<section  class="box">
+				<header class="major">
+				<h4>Include</h4>
+				</header>
+			</section>
+
+			<section  class="box">
+				<header class="major">
+				<h4>Include</h4>
+				</header>
+			</section>
+
+			<section  class="box">
+				<header class="major">
+				<h4>Include</h4>
+				</header>
+			</section>
+
+			<section  class="box">
+				<header class="major">
+				<h4>Include</h4>
+				</header>
+			</section>
+
+	</section>
+</div>
+</div>
+</div>
 					<footer>
 						<div>
+							<header class="major">
 							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 							<!-- wordpress -->
 							<ins class="adsbygoogle"
@@ -137,6 +220,7 @@ mysql_close($conexao);
 							<script>
 							(adsbygoogle = window.adsbygoogle || []).push({});
 							</script>
+							</header>
 						</div>
 					</footer>
 
