@@ -33,7 +33,7 @@ $playermusica = "";
 			<link rel="stylesheet" href="css/style-xlarge.css" />
 		</noscript>
 	</head>
-	<body>
+	<body onselectstart="return false">
 
 	<!-- Header
 	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -172,9 +172,8 @@ mysql_close($conexao);
 ?>
 
 </tbody>
-
-						</table>
-					</div>
+</table>
+			</div>
 
 </div>
 

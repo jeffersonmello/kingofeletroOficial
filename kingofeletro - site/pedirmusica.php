@@ -25,7 +25,7 @@
 			<link rel="stylesheet" href="css/style-xlarge.css" />
 		</noscript>
 	</head>
-	<body>
+	<body onselectstart="return false">
 
 		<!-- Header -->
 			<header id="header">
@@ -44,7 +44,27 @@
 
 
 				<!-- Three -->
-			<section id="three" class="wrapper style3 special">
+			<section id="three" class="wrapper special">
+
+				<!-- Começo das Tabs
+					–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+					<div class="container">
+							<div class="row">
+								<div class="twelve columns" >
+									<ul class="tab-nav">
+										<li>
+											<a class="button alt active" href="#one">Pedir Música</a>
+										</li>
+										<li>
+											<a class="button alt" href="#two">Contato</a>
+										</li>
+										<li>
+											<a class="button alt" href="#sobre">Sobre</a>
+										</li>
+									</ul>
+
+<div class="tab-content">
+		<div class="tab-pane active" id="one">
 				<div class="container">
 					<header class="major">
 						<h2>Peça sua música !</h2>
@@ -71,7 +91,18 @@
 						</div>
 					</form>
 				</div>
-			</section>
+</div>
+
+<div class="tab-pane" id="two">
+ <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12149943521%3Aplaylist%3A2Kj4ph6Hi2Uo51jyx8jtuL" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>
+</div>
+
+<div class="tab-pane" id="sobre">
+  <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+</div>
+
+</div>
+</section>
 
 
 		<!-- Footer -->
