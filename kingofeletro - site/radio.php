@@ -30,10 +30,10 @@
 				<h1><a href="index.html">king of eletro</a></h1>
 				<nav id="nav">
 					<ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="musicas.php">Músicas</a></li>
-            <li><a href="contato.php">Contato</a></li>
-            <li><a href="radio.php" class="button special">Rádio</a></li>
+						<li><a href="index.php">Home</a></li>
+						<li><a href="musicas.php">Músicas</a></li>
+						<li><a href="pedirmusica.php">Contato</a></li>
+						<li><a href="radio.php" target="_blank" class="button special">Rádio</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -54,6 +54,7 @@
 	</section>
 	<footer>
 		<div>
+			<header class="major">
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- wordpress -->
 			<ins class="adsbygoogle"
@@ -64,6 +65,7 @@
 			<script>
 			(adsbygoogle = window.adsbygoogle || []).push({});
 			</script>
+			</header>
 		</div>
 	</footer>
 
@@ -85,11 +87,10 @@
 						<section class="3u 6u(medium) 12u$(small)">
 							<h3>King of Eletro</h3>
 							<ul class="unstyled">
-								<li><a href="#">Rádio Online</a></li>
-								<li><a href="#">Pedir uma música</a></li>
-								<li><a href="#">Músicas</a></li>
-								<li><a href="#">Download</a></li>
-								<li><a href="#">Sobre</a></li>
+								<li><a href="radio.php">Rádio Online</a></li>
+								<li><a href="pedirmusica.php">Pedir uma música</a></li>
+								<li><a href="musicas.php">Músicas</a></li>
+								<li><a href="pedirmusica.php">Sobre</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,8 +99,6 @@
 					<div class="8u 12u$(medium)">
 						<ul class="copyright">
 							<li>&copy; King of Eletro. All rights reserved.</li>
-							<li>Design: <a href="http://templated.co">TEMPLATED</a></li>
-							<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
 						</ul>
 					</div>
 					<div class="4u$ 12u$(medium)">
@@ -108,7 +107,7 @@
 								<a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
 							</li>
 							<li>
-								<a class="icon rounded fa-google-plus"><span class="label">Google+</span></a>
+							<a href="https://plus.google.com/b/108172637382157928790/108172637382157928790/posts?gmbpt=true&pageId=108172637382157928790&hl=pt-BR"  target="_blank" class="icon rounded fa-google-plus"><span  class="label">Google+</span></a>
 							</li>
 							<li>
 								<a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>

@@ -1,11 +1,11 @@
 <?
-
+error_reporting (E_ALL & ~ E_NOTICE & ~ E_DEPRECATED);
 	// declarando as variáveis de conexão.
 
 	$host = "localhost";
-	$bduser = "pristons_user2";
+	$bduser = "u656231515_king";
 	$bdsenha = "gamabeta";
-	$bd = "pristons_king";
+	$bd = "u656231515_king";
 
 	// fim da declaração de variaveis.
 

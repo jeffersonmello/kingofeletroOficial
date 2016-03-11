@@ -54,7 +54,7 @@ $pc = $pagina;
 			<section id="one" class="wrapper style1 special">
 				<div class="container">
 					<header class="major">
-						<h3>Novas Músicas ou mais tocadas</h3>
+						<h2>Novas Músicas ou mais tocadas</h2>
 						<p>Faça download das melhores músicas do momento</p>
 					</header>
 
@@ -64,14 +64,15 @@ $pc = $pagina;
 	</div>
 
 <div class="row">
-	<div class="one columns major">
-
+	<div class="one columns major" style="margin-bottom:100%; margin-right: 45px;">
+		<section style="margin-bottom:25px" >
+		</section>
 	</div>
-	<div class="eight columns major" width="100%">
-			<section  class="box major" width="100%">
+
+	<div class="eight columns major">
+			<section  class="box major">
 				<header class="major">
-				<h2>Novas Músicas ou mais tocadas</h2>
-				<p>Aqui você pode ouvir ou baixar as músicas mais tocadas do momento, só mesmo aqui na King of Eletro !!!    </p>
+				<p>Aqui você pode ouvir ou baixar as músicas mais tocadas do momento, só na King of Eletro !!!    </p>
 				</header>
 <?
 					include "config.php";
@@ -136,8 +137,9 @@ mysql_close($conexao);
 ?>
 
 	</section>
+
 	</div>
-	<div class="THREE column">
+	<div class="two column">
 		<section  class="box">
 			<header class="major">
 			<h2>Anúncios</h2>
@@ -205,7 +207,7 @@ mysql_close($conexao);
 
 	</section>
 </div>
-</div>
+
 </div>
 					<footer>
 						<div>
@@ -245,7 +247,7 @@ mysql_close($conexao);
 									<li><a href="radio.php">Rádio Online</a></li>
 									<li><a href="pedirmusica.php">Pedir uma música</a></li>
 									<li><a href="musicas.php">Músicas</a></li>
-									<li><a href="sobre.php">Sobre</a></li>
+									<li><a href="pedirmusica.php">Sobre</a></li>
 								</ul>
 							</section>
 

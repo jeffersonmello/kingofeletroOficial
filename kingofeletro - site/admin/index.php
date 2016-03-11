@@ -1,14 +1,15 @@
 <?php
 ob_start();
-if(!$HTTP_COOKIE_VARS["usuario"] && !$HTTP_COOKIE_VARS["senha"]){
-header("Location: login.php");
-exit();
+if(isset($_COOKIE["usuariologado"]) && isset($_COOKIE["senhalogado"])){
+} else {
+  header("Location: login.php");
+  exit();
 }
-
 $countMusics;
 $countMusicPlay;
 $countUsers;
 $countDownloads;
+
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

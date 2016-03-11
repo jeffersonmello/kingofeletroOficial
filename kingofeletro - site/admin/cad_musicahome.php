@@ -3,9 +3,10 @@ ob_start();
 ini_set( 'display_errors', true );
 error_reporting( E_ALL );
 
-if(!$HTTP_COOKIE_VARS["usuario"] && !$HTTP_COOKIE_VARS["senha"]){
-header("Location: login.php");
-exit();
+if(isset($_COOKIE["usuariologado"]) && isset($_COOKIE["senhalogado"])){
+} else {
+  header("Location: login.php");
+  exit();
 }
 
 $pagina     = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;

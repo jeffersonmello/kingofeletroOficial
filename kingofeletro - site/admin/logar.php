@@ -10,10 +10,12 @@
 		$usuario = $array["usuario"];
 		$senha = $array["senha"];
 
+		$usuarioMD5 = md5($usuario);
+		$senhaMD5	= md5($senha);
 
 		if(($busca > 0) && ($array > 0)){
-			setcookie("usuario", $usuario);
-			setcookie("senha", $senha);
+			setcookie("usuariologado", $usuarioMD5);
+			setcookie("senhalogado", $senhaMD5);
 			header("location: index.php");
 			exit();
 		}
