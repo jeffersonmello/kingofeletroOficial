@@ -3,11 +3,7 @@ ob_start();
 ini_set( 'display_errors', true );
 error_reporting( E_ALL );
 
-if(isset($_COOKIE["usuariologado"]) && isset($_COOKIE["senhalogado"])){
-} else {
-  header("Location: login.php");
-  exit();
-}
+
 
 $pagina     = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
 $pc = $pagina;
@@ -32,6 +28,11 @@ $guidDelete;
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- Scripts Data Tables
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+
+    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -39,6 +40,11 @@ $guidDelete;
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+<script>
+$(document).ready( function () {
+  $('#reg').DataTable();
+} );
+</script>
 <body>
     <header>
         <div class="container">
@@ -52,7 +58,6 @@ $guidDelete;
             </div>
         </div>
     </header>
-    <!-- HEADER END-->
     <div class="navbar navbar-inverse set-radius-zero">
         <div class="container">
             <div class="navbar-header">
@@ -66,38 +71,70 @@ $guidDelete;
 
             </div>
 
-            <div class="left-div">
-                <div class="user-settings-wrapper">
-                    <ul class="nav">
+            <script>
+            function encryptIt( $q ) {
+    $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
+    $qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
+    return( $qEncoded );
+}
 
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-settings">
-                                <div class="media">
-                                    <a class="media-left" href="#">
-                                        <img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Jhon Deo Alex </h4>
-                                        <h5>Developer & Designer</h5>
+function decryptIt( $q ) {
+    $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
+    $qDecoded      = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), base64_decode( $q ), MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ), "\0");
+    return( $qDecoded );
+}
+          </script>
 
-                                    </div>
-                                </div>
-                                <hr />
-                                <h5><strong>Personal Bio : </strong></h5>
-                                Anim pariatur cliche reprehen derit.
-                                <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.html" class="btn btn-danger btn-sm">Logout</a>
 
+
+            <?php
+              include('config.php');
+              $userlogadon = ($_COOKIE['usuariologado']);
+              $senhalogadon = ($_COOKIE['senhalogado']);
+
+
+            //  $userlogadon = decryptIt($userlogadon);
+            // $senhalogadon = decryptIt($senhalogadon);
+
+              mysql_select_db($bd, $conexao);
+              $sql = mysql_query("select * from usuario where usuario='$userlogadon' AND senha='$senhalogadon'");
+              while($linha = mysql_fetch_array($sql)){
+              $nomeLog= $linha["nome"];
+              $tipoLog= $linha["tipo"];
+              $jobLog= $linha["job"];
+              $nivelLog= $linha["nivel"];
+            }
+            ?>
+
+                        <div class="left-div">
+                            <div class="user-settings-wrapper">
+                                <ul class="nav">
+
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                            <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-settings">
+                                            <div class="media">
+                                                <a class="media-left" href="#">
+                                                    <img src="assets/img/user.png" alt="" class="img-rounded" />
+                                                </a>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading"><?php echo $nomeLog?></h4>
+                                                    <h5><?php echo $jobLog?></h5>
+
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <h5><strong>Nivel : </strong></h5>
+                                            <?php echo $nivelLog?>
+                                            <hr />
+                                            <a href="#" class="btn btn-info btn-sm">Perfil</a>&nbsp; <a href="logout.php" class="btn btn-danger btn-sm">Sair</a>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </div>
+                        </div>
         </div>
     </div>
     <!-- LOGO HEADER END-->
@@ -115,13 +152,11 @@ $guidDelete;
                                 <li><a class="menu-section" href="cad_musicahome.php">Cadastro de Música Home</a></li>
                                 <li><a class="menu-section" href="cad_playlist.php">Cadastro de PlayList</a></li>
                                 <li><a class="menu-section" href="cad_download.php">Cadastro de Downloads</a></li>
+                                <li><a class="menu-section" href="cad_usuarios.php">Cadastro de Usuários</a></li>
                                 <li><a class="menu-section" href="#">Cadastro de Noticias</a></li>
                               </ul>
                             </li>
-                            <li><a href="ui.html">UI Elements</a></li>
-                            <li><a href="table.html">Data Tables</a></li>
-                            <li><a href="forms.html">Forms</a></li>
-
+                            <li><a href="ligaradio.php">Ligar Radio</a></li>
                         </ul>
                     </div>
                 </div>
@@ -151,12 +186,6 @@ $guidDelete;
                              </div>
 
 
-  <!-- Search class like   -->
-  <?php
-    if(isset($_GET['search'])){
-        $search=($_POST['search']);
-    }
-?>
                     <form name="pesquisa" id="pesquisa" method="post" action="">
                              <div class="col-md-6">
                                  <div class="input-group h2">
@@ -177,12 +206,18 @@ $guidDelete;
 
                         <hr />
 
+                        <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+                        <script type="text/javascript" src="DataTables/datatables.min.js"></script>
 
-                        <div id="list" class="row">
-                          <div id="list" class="row">
+        <script type="text/javascript">
+        jQuery(document).ready( function ()
+        {
+            var table = $('#reg').DataTable();
 
+        });
+    </script>
                               <div class="table-responsive col-md-12">
-                                  <table class="table table-hover" cellspacing="0" cellpadding="0">
+                                  <table id="reg" class="table table-hover table-bordered" cellspacing="0" cellpadding="0">
                                       <thead>
                                           <tr>
                                               <th>#</th>
@@ -367,8 +402,7 @@ mysql_close($conexao);
 
 </tbody>
 </table>
-</div>
-</div>
+
 
 
 <?

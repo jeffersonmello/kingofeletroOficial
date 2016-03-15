@@ -3,16 +3,16 @@
 $playertitulo = "";
 $playermusica = "";
  ?>
-<html lang="en">
+<html lang="pt-br">
 	<head>
 		<!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-		<meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="King of Eletro, Rádio Online, ouça músicas online e download das melhores músicas">
+  <meta name="author" content="Jefferson Mello Olynyki">
 		<title>King of Eletro - Oficial</title>
     <link rel="icon" type="image/png" href="favicon.png" />
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
 
 		<!-- Mobile Specific Metas
    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -27,12 +27,23 @@ $playermusica = "";
 		<script src="js/init.js"></script>
     <script src="js/jquery.js"></script>
     <script src="skeleton-tabs.js"></script>
+    <!-- Scripts Data Tables
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-xlarge.css" />
 		</noscript>
 	</head>
+
+  <script>
+  $(document).ready( function () {
+    $('#downloads').DataTable();
+} );
+  </script>
 	<body onselectstart="return false">
 
 	<!-- Header
@@ -117,8 +128,8 @@ $playermusica = "";
 			<!-- Tabela de Musicas
 				–––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <div class="tab-content">
-        <div class="tab-pane active" id="one">
-										<div class="table-wrapper">
+        <div class="tab-pane active"  id="one">
+										<div class="table-wrapper major">
 											<table>
 													<thead>
 															<tr>
@@ -177,14 +188,55 @@ mysql_close($conexao);
 
 </div>
 
-<div class="tab-pane" id="two">
+<div class="tab-pane" style="margin-left:800px" id="two">
 		<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12149943521%3Aplaylist%3A2Kj4ph6Hi2Uo51jyx8jtuL" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>
 </div>
 
 <div class="tab-pane" id="three">
-           <h5>Tab 3</h5>
-           <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-         </div>
+  <div class="table-wrapper" cellspacing="0" width="100%" height="100%" style="overflow-y:hidden; overflow-x:hidden;">
+    <div class="container">
+    <table class="table-wrapper" id="downloads">
+        <thead>
+            <tr>
+              <th>Titulo</th>
+              <th>Artista</th>
+              <th>Download</th>
+              <th>Download Torrent</th>
+              </tr>
+          </thead>
+      <tbody>
+  <?
+  include "config.php";
+
+  $sql = mysql_query("SELECT * FROM downloads limit 100");
+  while($linha = mysql_fetch_array($sql)){
+  $guid=$linha["guid"];
+  $titulo= $linha["titulo"];
+  $artista= $linha["artista"];
+  $download= $linha["downloadlink"];
+  $downloadtorrent= $linha["downloadtorrente"];
+
+
+
+  echo	"<tr>";
+  echo	"<td>$titulo</td>";
+  echo	"<td>$artista</td>";
+  echo	"<td><li><a href='$download' class='button icon fa-download'>Download</a></li></td>";
+  echo	"<td><li><a href='$downloadtorrent' class='button icon fa-download'>Download</a></li></td>";
+  echo 	"</tr>";
+
+  }
+
+  mysql_close($conexao);
+  ?>
+
+  </tbody>
+  </table>
+  </div>
+
+</div>
+</div>
+
 </div>
 
 </section>

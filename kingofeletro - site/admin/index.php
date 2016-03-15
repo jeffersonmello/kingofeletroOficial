@@ -23,10 +23,21 @@ $countDownloads;
     <title>Admin King of Eletro</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <!-- Scripts Data Tables
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+        $('#test').DataTable();
+    } );
+    </script>
     <!-- FONT AWESOME ICONS  -->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -61,34 +72,54 @@ $countDownloads;
 
             </div>
 
-            <div class="left-div">
-                <div class="user-settings-wrapper">
-                    <ul class="nav">
+            <?php
+              include('config.php');
+              $userlogadon = ($_COOKIE['usuariologado']);
+              $senhalogadon = ($_COOKIE['senhalogado']);
 
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-settings">
-                                <div class="media">
-                                    <a class="media-left" href="#">
-                                        <img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Jhon Deo Alex </h4>
-                                        <h5>Developer & Designer</h5>
-                                    </div>
-                                </div>
-                                <hr />
-                                <h5><strong>Personal Bio : </strong></h5>
-                                Anim pariatur cliche reprehen derit.
-                                <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="logout.php" class="btn btn-danger btn-sm">Sair</a>
+
+             //$userlogadon = decryptIt($userlogadon);
+            //$senhalogadon = decryptIt($senhalogadon);
+
+              mysql_select_db($bd, $conexao);
+              $sql = mysql_query("select * from usuario where usuario='$userlogadon' AND senha='$senhalogadon'");
+              while($linha = mysql_fetch_array($sql)){
+              $nomeLog= $linha["nome"];
+              $tipoLog= $linha["tipo"];
+              $jobLog= $linha["job"];
+              $nivelLog= $linha["nivel"];
+            }
+            ?>
+
+                        <div class="left-div">
+                            <div class="user-settings-wrapper">
+                                <ul class="nav">
+
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                            <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-settings">
+                                            <div class="media">
+                                                <a class="media-left" href="#">
+                                                    <img src="assets/img/user.png" alt="" class="img-rounded" />
+                                                </a>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading"><?php echo $nomeLog?></h4>
+                                                    <h5><?php echo $jobLog?></h5>
+
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <h5><strong>Nivel : </strong></h5>
+                                            <?php echo $nivelLog?>
+                                            <hr />
+                                            <a href="#" class="btn btn-info btn-sm">Perfil</a>&nbsp; <a href="logout.php" class="btn btn-danger btn-sm">Sair</a>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                        </div>
         </div>
     </div>
     <!-- LOGO HEADER END-->
@@ -106,11 +137,10 @@ $countDownloads;
         <li><a class="menu-section" href="cad_musicahome.php">Cadastro de Música Home</a></li>
         <li><a class="menu-section" href="cad_playlist.php">Cadastro de PlayList</a></li>
         <li><a class="menu-section" href="cad_download.php">Cadastro de Downloads</a></li>
-        <li><a class="menu-section" href="#">Cadastro de Noticias</a></li>
-          <li><a class="menu-section" href="#">Cadastro de Usuários</a></li>
+        <li><a class="menu-section" href="cad_usuarios.php">Cadastro de Usuários</a></li>
       </ul>
     </li>
-                          <li><a href="ui.html">Ligar Radio</a></li>
+                          <li><a href="ligaradio.php">Ligar Radio</a></li>
                       </ul>
                     </div>
                 </div>
@@ -128,35 +158,62 @@ $countDownloads;
             </div>
 
             <div class="row">
+<?
+          include "config.php";
+
+          $sql = mysql_query("SELECT * FROM musicas_home");
+          $trMH = mysql_num_rows($sql); // verifica o número total de registros
+          mysql_close($conexao);
+  ?>
               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					           <div class="info-box blue-bg">
 						                 <i class="fa fa-music"></i>
-						                       <div class="count">6.674</div>
+						                       <div class="count"><?php echo $trMH ?></div>
 						                        <div class="title">Músicas Home</div>
 					            </div><!--/.info-box-->
 				      </div><!--/.col-->
 
+<?
+                            include "config.php";
+
+                            $sql = mysql_query("SELECT * FROM musicas_playlist");
+                            $trPlay = mysql_num_rows($sql); // verifica o número total de registros
+                            mysql_close($conexao);
+?>
               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                      <div class="info-box" style="background:#66bab7">
                              <i class="fa fa-list"></i>
-                                   <div class="count">6.674</div>
+                                   <div class="count"><?php echo $trPlay ?></div>
                                     <div class="title">Playlist</div>
                       </div><!--/.info-box-->
               </div><!--/.col-->
 
+<?
+                        include "config.php";
+
+                        $sql = mysql_query("SELECT * FROM downloads");
+                        $trDS = mysql_num_rows($sql); // verifica o número total de registros
+                        mysql_close($conexao);
+?>
               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                      <div class="info-box" style="background:#5691db">
                              <i class="fa fa-cloud-download"></i>
-                                   <div class="count">6.674</div>
+                                   <div class="count"><?php echo $trDS ?></div>
                                     <div class="title">Downloads</div>
                       </div><!--/.info-box-->
               </div><!--/.col-->
 
+<?
+                        include "config.php";
 
+                        $sql = mysql_query("SELECT * FROM usuario");
+                        $trUR = mysql_num_rows($sql); // verifica o número total de registros
+                        mysql_close($conexao);
+?>
               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                      <div class="info-box" style="background:#00c3a6">
                              <i class="fa fa-user"></i>
-                                   <div class="count">6.674</div>
+                                   <div class="count"><?php echo $trUR ?></div>
                                     <div class="title">Users</div>
                       </div><!--/.info-box-->
               </div><!--/.col-->
@@ -237,8 +294,9 @@ $countDownloads;
                     </div>
 
                     <hr />
-                     <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
+
+
+                                <table class="table table-striped table-bordered" id="test" name="test">
                                     <thead>
                                         <tr>
                                             <th>Ref. No.</th>
@@ -297,8 +355,8 @@ $countDownloads;
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="alert alert-danger">
                         This is a simple admin template that can be used for your small project or may be large projects. This is free for personal and commercial use.

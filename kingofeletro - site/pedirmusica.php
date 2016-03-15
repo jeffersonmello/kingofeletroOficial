@@ -4,14 +4,15 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-<html lang="en">
+<html lang="pt-br">
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="King of Eletro, Rádio Online, ouça músicas online e download das melhores músicas">
+		<meta name="author" content="Jefferson Mello Olynyki">
 		<title>King of Eletro - Oficial</title>
 		<link rel="icon" type="image/png" href="favicon.png" />
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
+
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>
