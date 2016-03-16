@@ -46,11 +46,12 @@
 					<header class="major">
 						<h2>Rádio King of Eletro Online</h2>
 					</header>
-
-					<script>
-			window.open("radio/radio.php","","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,WIDTH=480,HEIGHT=175, top=180, left=150");
-			</script>
-		</div>
+					<div class="major">
+						<div class="container">
+						<iframe lass="major" src="radio/demo.htm" width="100%"></iframe>
+					</div>
+					</div>
+				</div>
 	</section>
 	<footer>
 		<div>

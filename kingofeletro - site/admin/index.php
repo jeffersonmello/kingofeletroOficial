@@ -138,6 +138,7 @@ $countDownloads;
         <li><a class="menu-section" href="cad_playlist.php">Cadastro de PlayList</a></li>
         <li><a class="menu-section" href="cad_download.php">Cadastro de Downloads</a></li>
         <li><a class="menu-section" href="cad_usuarios.php">Cadastro de Usuários</a></li>
+        <li><a class="menu-section" href="cad-musicaradio.php">Cadastro de Musicas da Rádio</a></li>
       </ul>
     </li>
                           <li><a href="ligaradio.php">Ligar Radio</a></li>

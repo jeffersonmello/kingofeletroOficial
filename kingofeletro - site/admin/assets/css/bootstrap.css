@@ -254,10 +254,14 @@ th {
   }
   .table {
     border-collapse: collapse !important;
+    table-layout:fixed;
   }
   .table td,
   .table th {
     background-color: #fff !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .table-bordered th,
   .table-bordered td {

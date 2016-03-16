@@ -3,6 +3,10 @@ ob_start();
 ini_set( 'display_errors', true );
 error_reporting( E_ALL );
 
+
+
+$pagina     = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
+$pc = $pagina;
 $guidEdit;
 $guidDelete;
 ?>
@@ -17,7 +21,7 @@ $guidDelete;
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Admin King of Eletro</title>
+    <title>Admin King of Eletro | Cadastro de Playlist</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
@@ -26,7 +30,7 @@ $guidDelete;
     <link href="assets/css/style.css" rel="stylesheet" />
     <!-- Scripts Data Tables
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css" media="screen" charset="utf-8">
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css" media="screen" charset="utf-8">
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -34,7 +38,6 @@ $guidDelete;
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
     <header>
         <div class="container">
@@ -60,20 +63,6 @@ $guidDelete;
                 </a>
 
             </div>
-
-            <script>
-            function encryptIt( $q ) {
-    $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
-    $qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
-    return( $qEncoded );
-}
-
-function decryptIt( $q ) {
-    $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
-    $qDecoded      = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), base64_decode( $q ), MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ), "\0");
-    return( $qDecoded );
-}
-          </script>
 
 
 
@@ -134,13 +123,13 @@ function decryptIt( $q ) {
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a  href="index.html">Dashboard</a></li>
+                            <li><a  href="index.php">Dashboard</a></li>
                             <li class="dropdown">
                               <a class="dropdown-toggle menu-top-active" data-toggle="dropdown" href="#">Cadastros
                               <span class="caret"></span></a>
                               <ul class="dropdown-menu">
-                                <li><a class="menu-section menu-top-active" href="cad_musicahome.php">Cadastro de Música Home</a></li>
-                                <li><a class="menu-section" href="cad_playlist.php">Cadastro de PlayList</a></li>
+                                <li><a class="menu-section" href="cad_musicahome.php">Cadastro de Música Home</a></li>
+                                <li><a class="menu-section menu-top-active" href="cad_playlist.php">Cadastro de PlayList</a></li>
                                 <li><a class="menu-section" href="cad_download.php">Cadastro de Downloads</a></li>
                                 <li><a class="menu-section" href="cad_usuarios.php">Cadastro de Usuários</a></li>
                                 <li><a class="menu-section" href="#">Cadastro de Noticias</a></li>
@@ -172,7 +161,7 @@ function decryptIt( $q ) {
                     <div id="main" class="container-fluid">
                         <div id="top" class="row">
                           <div class="col-md-3">
-                                 <h2>Músicas</h2>
+                                 <h2>Playlists</h2>
                              </div>
 
 
@@ -195,40 +184,54 @@ function decryptIt( $q ) {
                         </div> <!-- /#top -->
 
                         <hr />
+
+                        <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+                        <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+
+        <script type="text/javascript">
+        jQuery(document).ready( function ()
+        {
+            var table = $('#reg').DataTable();
+
+        });
+    </script>
                               <div class="table-responsive col-md-12">
-                                  <table id="example" class="table table-hover table-bordered" cellspacing="0" cellpadding="0">
+                                  <table id="reg" class="table table-hover table-bordered" cellspacing="0" cellpadding="0">
                                       <thead>
                                           <tr>
                                               <th>#</th>
                                               <th>Titulo</th>
-                                              <th>Texto</th>
-                                              <th>Link de Download</th>
-                                              <th>Nome do Arquivo</th>
-                                              <th>Embed</th>
+                                              <th>Artista</th>
+                                              <th>Album </th>
+                                              <th>Link Play</th>
+                                              <th>Link Download</th>
                                               <th class="actions">Ações</th>
                                            </tr>
                                       </thead>
                                       <tbody>
 <?
                     include "config.php";
-
+                    $total_reg = "30";
 
                     $guidEdit = "0";
                     $guidDelete = "0";
 
+                    $inicio = $pc - 1;
+                    $inicio = $inicio * $total_reg;
 
-
-                    $sql = mysql_query("SELECT * FROM musicas_home");
+                    $sql = mysql_query("SELECT * FROM musicas_playlist LIMIT $inicio,$total_reg");
                     $tr = mysql_num_rows($sql); // verifica o número total de registros
+                    $tp = $tr / $total_reg; // verifica o número total de páginas
 
 
                     while($linha = mysql_fetch_array($sql)){
                     $guid1= $linha["guid"];
+                    $arte1= $linha["arte_album"];
                     $titulo1= $linha["titulo"];
-                    $texto1= $linha["texto"];
-                    $downloadlink1 = $linha["downloadlink"];
-                    $nomearquivo1= $linha["nomearquivo"];
-                    $embed1= $linha["embed"];
+                    $artista1= $linha["artista"];
+                    $album1 = $linha["album"];
+                    $linkplay1= $linha["linkplay"];
+                    $linkdownload1 = $linha["linkdownload"];
 
                     $guidEdit = ($guid1 +50);
                     $guidDelete = ($guid1 +100);
@@ -237,10 +240,10 @@ function decryptIt( $q ) {
                     echo  "<tr>";
                     echo  "<td>$guid1</td>";
                     echo  "<td>$titulo1</td>";
-                    echo  "<td>$texto1</td>";
-                    echo  "<td>$downloadlink1</td>";
-                    echo  "<td>$nomearquivo1</td>";
-                    echo  "<td>$embed1</td>";
+                    echo  "<td>$artista1</td>";
+                    echo  "<td>$album1</td>";
+                    echo  "<td>$linkplay1</td>";
+                    echo  "<td>$linkdownload1</td>";
                     echo  "<td class='actions'>";
                     echo  "<a class='btn btn-success btn-xs glyphicon glyphicon-eye-open' href='view.html' data-toggle='modal' data-target='#$guid1'></a>";
                     echo  "<a> </a>";
@@ -262,30 +265,37 @@ echo            "</div>";
 echo            "<div class='modal-body'>";
 echo              "<form name='inserir' id='inserir' method='post' action=''>";
 echo                "<fieldset disabled>";
+
 echo                "<div class='form-group'>";
 echo                  "<label for='exampleInputEmail1'>Titulo</label>";
 echo                  "<input name='titulo' type='text' class='form-control' id='titulo' value='$titulo1' placeholder='Titulo da Música' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Texto da Musica</label>";
-echo                  "<input name='texto' type='text' class='form-control' id='texto' value='$texto1' placeholder='Faça o download ou ouça esta música' />";
+echo                  "<label for='exampleInputEmail1'>Arte do Album</label>";
+echo                  "<input name='texto' type='text' class='form-control' id='texto' value='$arte1' placeholder='Faça o download ou ouça esta música' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Link para download</label>";
-echo                  "<input name='downloadlink' type='text' class='form-control' id='downloadlink' value='$downloadlink1' placeholder='Link de download' />";
+echo                  "<label for='exampleInputEmail1'>Artista</label>";
+echo                  "<input name='downloadlink' type='text' class='form-control' id='downloadlink' value='$artista1' placeholder='Link de download' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Nome do arquivo</label>";
-echo                  "<input name='nomearquivo' type='text' class='form-control' id='nomearquivo' value='$nomearquivo1' placeholder='Ex: avicii.mp3' />";
+echo                  "<label for='exampleInputEmail1'>Album</label>";
+echo                  "<input name='nomearquivo' type='text' class='form-control' id='nomearquivo' value='$album1' placeholder='Ex: avicii.mp3' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Embed</label>";
-echo                  "<input name='musicalink' type='text' class='form-control' id='musicalink' value='$embed1' placeholder='Link ou diretorio aonde a musica está' />";
+echo                  "<label for='exampleInputEmail1'>Link da musica</label>";
+echo                  "<input name='musicalink' type='text' class='form-control' id='musicalink' value='$linkplay1' placeholder='Link ou diretorio aonde a musica está' />";
 echo                "</div>";
+
+echo                "<div class='form-group'>";
+echo                  "<label for='exampleInputEmail1'>Link download</label>";
+echo                  "<input name='musicalink' type='text' class='form-control' id='musicalink' value='$linkdownload1' placeholder='Link ou diretorio aonde a musica está' />";
+echo                "</div>";
+
 echo                  "</fieldset>";
 echo                   "<button type='button'  class='btn btn-default glyphicon glyphicon-remove-circle' data-dismiss='modal'  > Fechar</button>";
 echo                  "</form>";
@@ -305,7 +315,7 @@ echo                "<button type='button' class='close' data-dismiss='modal' ar
 echo                "<h4 class='modal-title' id='myModalLabel'>Editar Musica</h4>";
 echo            "</div>";
 echo            "<div class='modal-body'>";
-echo              "<form name='inserir' id='inserir' method='post' action='editar-musica.php'>";
+echo              "<form name='inserir' id='inserir' method='post' action='edit-playlist.php'>";
 
 echo                "<div style='display:none' class='form-group'>";
 echo                  "<label for='inputError1'>guid</label>";
@@ -318,24 +328,30 @@ echo                  "<input name='titulo' type='text' class='form-control' id=
 echo                "</div>";
 
 echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Texto da Musica</label>";
-echo                  "<input name='texto' type='text' class='form-control' id='texto' value='$texto1' placeholder='Faça o download ou ouça esta música' />";
+echo                  "<label for='exampleInputEmail1'>Arte do Album</label>";
+echo                  "<input name='arte' type='text' class='form-control' id='arte' value='$arte1' placeholder='Faça o download ou ouça esta música' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Link para download</label>";
-echo                  "<input name='downloadlink' type='text' class='form-control' id='downloadlink' value='$downloadlink1' placeholder='Link de download' />";
+echo                  "<label for='exampleInputEmail1'>Artista</label>";
+echo                  "<input name='artista' type='text' class='form-control' id='artista' value='$artista1' placeholder='Link de download' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Nome do arquivo</label>";
-echo                  "<input name='nomearquivo' type='text' class='form-control' id='nomearquivo' value='$nomearquivo1' placeholder='Ex: avicii.mp3' />";
+echo                  "<label for='exampleInputEmail1'>Album</label>";
+echo                  "<input name='album' type='text' class='form-control' id='album' value='$album1' placeholder='Ex: avicii.mp3' />";
 echo                "</div>";
 
 echo                "<div class='form-group'>";
-echo                  "<label for='exampleInputEmail1'>Embed</label>";
-echo                  "<textarea name='musicalink' type='text' class='form-control' rows'4' id='musicalink'  placeholder='Link ou diretorio aonde a musica está'>$embed1</textarea>";
+echo                  "<label for='exampleInputEmail1'>Link da musica</label>";
+echo                  "<input name='musicalink' type='text' class='form-control' id='musicalink' value='$linkplay1' placeholder='Link ou diretorio aonde a musica está' />";
 echo                "</div>";
+
+echo                "<div class='form-group'>";
+echo                  "<label for='exampleInputEmail1'>Link download</label>";
+echo                  "<input name='download' type='text' class='form-control' id='download' value='$linkdownload1' placeholder='Link ou diretorio aonde a musica está' />";
+echo                "</div>";
+
 echo                   "<button type='submit' name='Submit' id='button' class='btn btn-default glyphicon glyphicon-ok-sign'  data-toggle='modal' data-target='#$guidEdit' > Salvar</button>";
 echo                   "<a> </a>";
 echo                   "<button type='button'  class='btn btn-default glyphicon glyphicon-remove-circle' data-dismiss='modal'  > Cancelar</button>";
@@ -357,7 +373,7 @@ echo                "<button type='button' class='close' data-dismiss='modal' ar
 echo                "<h4 class='modal-title' id='myModalLabel'>Deletar esta música ?</h4>";
 echo            "</div>";
 echo            "<div class='modal-body'>";
-echo              "<form name='inserir' id='inserir' method='post' action='delete-musica.php'>";
+echo              "<form name='inserir' id='inserir' method='post' action='delete-playlist.php'>";
 echo                "<div style='display:none' class='form-group'>";
 echo                  "<label for='exampleInputEmail1'>guid</label>";
 echo                  "<input name='guid' type='text' class='form-control' id='guid' value='$guid1' placeholder='Titulo da Música' />";
@@ -387,45 +403,68 @@ mysql_close($conexao);
 
 <script type="text/javascript">
     $(document).ready(function() {
-      $('#example').DataTable();
+      $('#reg').DataTable();
     } );
 </script>
 
 
+<?
+                	   $anterior = $pc -1;
+                	   $proximo = $pc +1;
 
+
+                   if ($pc>1) {
+                   echo  "<li<a><a href='?pagina=$anterior'>&lt; Anterior</a></li>";
+                      }
+                  if ($pc<$tp) {
+                  echo  "<ul class='pagination'>";
+                  echo  "<li <a class='next'><a href='?pagina=$proximo'  rel='next'>Próximo &gt;</a></li>";
+                      }
+                  if ($pc=$tp) {
+                  echo  "<ul class='pagination'>";
+                  echo  "<li <a class='next'><a  href='?pagina=$proximo' rel='next'>Próximo &gt;</a></li>";
+                          }
+
+?>
+                    </ul><!-- /.pagination -->
 
                      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                          <div class="modal-dialog">
                              <div class="modal-content">
                                  <div class="modal-header">
                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                     <h4 class="modal-title" id="myModalLabel">Cadastro de Musica</h4>
+                                     <h4 class="modal-title" id="myModalLabel">Cadastro de Musica Playlist</h4>
                                  </div>
                                  <div class="modal-body">
-                                   <form name="inserir" id="inserir" method="post" action="inserir-musica.php">
+                                   <form name="inserir" id="inserir" method="post" action="inserir-playlist.php">
                                      <div class="form-group">
                                        <label for="exampleInputEmail1">Titulo</label>
                                        <input name="titulo" type="text" class="form-control" id="titulo" placeholder="Titulo da Música" />
                                      </div>
 
                                      <div class="form-group">
-                                       <label for="exampleInputEmail1">Texto da Musica</label>
-                                       <input name="texto" type="text" class="form-control" id="texto" placeholder="Faça o download ou ouça esta música" />
+                                       <label for="exampleInputEmail1">Arte do Album</label>
+                                       <input name="arte" type="text" class="form-control" id="arte" placeholder="diretorio da imagem do album" />
                                      </div>
 
                                      <div class="form-group">
-                                       <label for="exampleInputEmail1">Link para download</label>
+                                       <label for="exampleInputEmail1">Artista</label>
+                                       <input name="artista" type="text" class="form-control" id="artista" placeholder="artista da música" />
+                                     </div>
+
+                                     <div class="form-group">
+                                       <label for="exampleInputEmail1">Album</label>
+                                       <input name="album" type="text" class="form-control" id="album" placeholder="album desta música" />
+                                     </div>
+
+                                     <div class="form-group">
+                                       <label for="exampleInputEmail1">Link Play</label>
+                                       <input name="linkplay" type="text" class="form-control" id="linkplay" placeholder="link da musica" />
+                                     </div>
+
+                                     <div class="form-group">
+                                       <label for="exampleInputEmail1">Link download</label>
                                        <input name="downloadlink" type="text" class="form-control" id="downloadlink" placeholder="Link de download" />
-                                     </div>
-
-                                     <div class="form-group">
-                                       <label for="exampleInputEmail1">Nome do arquivo</label>
-                                       <input name="nomearquivo" type="text" class="form-control" id="nomearquivo" placeholder="Ex: avicii.mp3" />
-                                     </div>
-
-                                     <div class="form-group">
-                                       <label for="exampleInputEmail1">Embed</label>
-                                       <textarea name="musicalink" type="text" class="form-control" rows="5" id="musicalink" placeholder="Link ou diretorio aonde a musica está"></textarea>
                                      </div>
                                         <button type="submit" name="Submit" id="button" class="btn btn-default glyphicon glyphicon-ok-sign"  data-toggle="modal" data-target="#myModal" > Salvar</button>
                                         <a> </a>
@@ -463,7 +502,6 @@ mysql_close($conexao);
         </div>
     </footer>
     <!-- FOOTER SECTION END-->
-    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
 </body>

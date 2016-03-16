@@ -12,7 +12,7 @@ $musicalink= $_POST["musicalink"];
 
 
 mysql_select_db($bd, $conexao);
-mysql_query("INSERT INTO musicas_home (titulo, texto, downloadlink, nomearquivo, musicalink) VALUES ('$titulo', '$texto', '$downloadlink','$nomearquivo','$musicalink')");
+mysql_query("INSERT INTO musicas_home (titulo, texto, downloadlink, nomearquivo, embed) VALUES ('$titulo', '$texto', '$downloadlink','$nomearquivo','$musicalink')");
 
 
 mysql_close($conexao);

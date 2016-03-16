@@ -92,7 +92,7 @@ $pc = $pagina;
 						$texto= $linha["texto"];
 						$downloadlink = $linha["downloadlink"];
 						$nomearquivo= $linha["nomearquivo"];
-						$musicalink= $linha["musicalink"];
+						$embed= $linha["embed"];
 
 
 
@@ -100,8 +100,8 @@ $pc = $pagina;
 		echo	"<h3>$titulo</h3>";
 		echo	"<p>$texto</p>";
 		echo	"<ul class='actions'>";
-		echo  "<li><a href='$downloadlink' class='button icon fa-download'>Download</a></li>";
-		echo	"<li><audio controls='controls' preload='preload' title='Abaçaiado - O Teatro Mágico'> <source type='audio/ogg' src='$musicalink' /> <source type='audio/mpeg' src='$musicalink' /> <a href='$musicalink'>ue</a> </audio></li>";
+		echo  "<li><a href='$downloadlink' class='button small icon fa-download'>Download</a></li>";
+		echo	"<li>$embed</li>";
 		echo	"</ul>";
 		echo	"<hr />";
 		echo	"</header>";
@@ -210,20 +210,17 @@ mysql_close($conexao);
 
 </div>
 					<footer>
-						<div>
-							<header class="major">
-							<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-							<!-- wordpress -->
-							<ins class="adsbygoogle"
-							     style="display:block"
-							     data-ad-client="ca-pub-3917397657053754"
-							     data-ad-slot="4746746424"
-							     data-ad-format="auto"></ins>
-							<script>
-							(adsbygoogle = window.adsbygoogle || []).push({});
-							</script>
-							</header>
-						</div>
+
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- wordpress -->
+<ins class="adsbygoogle"
+	 style="display:block"
+	 data-ad-client="ca-pub-3917397657053754"
+	 data-ad-slot="4746746424"
+	 data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
 					</footer>
 
 					<!--Start of Zopim Live Chat Script-->

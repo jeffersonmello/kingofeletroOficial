@@ -129,6 +129,7 @@ $playermusica = "";
 				–––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <div class="tab-content">
         <div class="tab-pane active"  id="one">
+          <div class="container" width="100%" height="100%">
 										<div class="table-wrapper major">
 											<table>
 													<thead>
@@ -185,76 +186,34 @@ mysql_close($conexao);
 </tbody>
 </table>
 			</div>
-
+</div>
 </div>
 
-<div class="tab-pane" style="margin-left:800px" id="two">
+<div class="tab-pane" id="two">
+  <div class="container" width="100%" height="100%">
 		<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12149943521%3Aplaylist%3A2Kj4ph6Hi2Uo51jyx8jtuL" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>
+</div>
 </div>
 
 <div class="tab-pane" id="three">
-  <div class="table-wrapper" cellspacing="0" width="100%" height="100%" style="overflow-y:hidden; overflow-x:hidden;">
-    <div class="container">
-    <table class="table-wrapper" id="downloads">
-        <thead>
-            <tr>
-              <th>Titulo</th>
-              <th>Artista</th>
-              <th>Download</th>
-              <th>Download Torrent</th>
-              </tr>
-          </thead>
-      <tbody>
-  <?
-  include "config.php";
-
-  $sql = mysql_query("SELECT * FROM downloads limit 100");
-  while($linha = mysql_fetch_array($sql)){
-  $guid=$linha["guid"];
-  $titulo= $linha["titulo"];
-  $artista= $linha["artista"];
-  $download= $linha["downloadlink"];
-  $downloadtorrent= $linha["downloadtorrente"];
-
-
-
-  echo	"<tr>";
-  echo	"<td>$titulo</td>";
-  echo	"<td>$artista</td>";
-  echo	"<td><li><a href='$download' class='button icon fa-download'>Download</a></li></td>";
-  echo	"<td><li><a href='$downloadtorrent' class='button icon fa-download'>Download</a></li></td>";
-  echo 	"</tr>";
-
-  }
-
-  mysql_close($conexao);
-  ?>
-
-  </tbody>
-  </table>
+  <div class="container" width="100%" height="100%">
+  <iframe src="admin/tabeladownloads.php" width="100%" height="800px"></iframe>
   </div>
-
-</div>
-</div>
-
 </div>
 
 </section>
 
-<div>
-  <header class="major">
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- wordpress -->
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-3917397657053754"
-       data-ad-slot="4746746424"
-       data-ad-format="auto"></ins>
-  <script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-  </header>
-</div>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- wordpress -->
+<ins class="adsbygoogle"
+   style="display:block"
+   data-ad-client="ca-pub-3917397657053754"
+   data-ad-slot="4746746424"
+   data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
   <!--Start of Zopim Live Chat Script-->
   <script type="text/javascript">

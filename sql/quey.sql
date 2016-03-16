@@ -6,7 +6,7 @@ create table musicas_home (
 	texto varchar(200),
 	downloadlink varchar(100),
 	nomearquivo varchar(100),
-	musicalink varchar(500),
+	embed varchar(500),
 	primary key (guid)
 );
 
@@ -36,16 +36,25 @@ create table musicas_playlist (
 
 create table radio (
 	guid int not null auto_increment,
-	tipo int not null,
-	embed varchar(255) not null,
+	ativo varchar(30),
+	embed varchar(500) not null,
 	primary key (guid)
 );
 
-create table downloads (
-	guid int not null auto_increment,
-	eguid bigint,
-	musica varchar(500) not null,
-	downloadlink varchar(500) not null,
-	countclicks int,
-	primary key (guid)
-);
+CREATE TABLE IF NOT EXISTS `downloads` (
+  `guid` int(11) NOT NULL AUTO_INCREMENT,
+  `eguid` bigint(20) DEFAULT NULL,
+  `musica` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `downloadlink` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `countclicks` int(11) DEFAULT NULL,
+  PRIMARY KEY (`guid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+
+CREATE TABLE `songs` (
+  `song_id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(500) NOT NULL,
+  `artist` varchar(250) NOT NULL,
+  `title` varchar(250) NOT NULL,
+  PRIMARY KEY (`song_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
