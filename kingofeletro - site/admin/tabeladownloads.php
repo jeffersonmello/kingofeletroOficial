@@ -30,13 +30,13 @@
 
 <body>
                               <div class="table-responsive col-md-12">
-                                  <table id="example" class="table table-hover table-bordered" cellspacing="0" cellpadding="0">
+                                  <table id="example" class="table table-hover" cellspacing="0" cellpadding="0">
                                       <thead>
                                           <tr>
-                                              <th>Titulo</th>
                                               <th>Artista</th>
-                                              <th>Link de Download</th>
-                                              <th>Link de Download Torrent</th>
+                                              <th>Titulo</th>
+                                              <th>Download</th>
+                                              <th>Torrent</th>
                                            </tr>
                                       </thead>
                                       <tbody>
@@ -63,10 +63,10 @@
 
 // Tabela
                     echo  "<tr>";
-                    echo  "<td>$titulo1</td>";
                     echo  "<td>$artista1</td>";
-                    echo  "<td><a href='$downloadlink1'  target='_blank' class='btn btn-primary btn-lg active center-block glyphicon glyphicon-download-alt'> Download</a></td>";
-                    echo  "<td><a href='$downloadtorrent1'target='_blank' class='btn btn-success btn-lg active center-block glyphicon glyphicon-cloud-download'> Torrent</a></td>";
+                    echo  "<td>$titulo1</td>";
+                    echo  "<td><a href='$downloadlink1'  target='_blank' height='10px' class='btn btn-primary btn-lg active center-block glyphicon glyphicon-download-alt'> Download</a></td>";
+                    echo  "<td><a href='$downloadtorrent1'target='_blank' height='10px' class='btn btn-success btn-lg active center-block glyphicon glyphicon-cloud-download'> Torrent</a></td>";
                     echo  "</tr>";
 }
 ?>

@@ -65,30 +65,12 @@ $guidDelete;
 
             </div>
 
-            <script>
-            function encryptIt( $q ) {
-    $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
-    $qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
-    return( $qEncoded );
-}
-
-function decryptIt( $q ) {
-    $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
-    $qDecoded      = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), base64_decode( $q ), MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ), "\0");
-    return( $qDecoded );
-}
-          </script>
-
 
 
             <?php
               include('config.php');
               $userlogadon = ($_COOKIE['usuariologado']);
               $senhalogadon = ($_COOKIE['senhalogado']);
-
-
-            //  $userlogadon = decryptIt($userlogadon);
-            // $senhalogadon = decryptIt($senhalogadon);
 
               mysql_select_db($bd, $conexao);
               $sql = mysql_query("select * from usuario where usuario='$userlogadon' AND senha='$senhalogadon'");
@@ -138,7 +120,7 @@ function decryptIt( $q ) {
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a  href="index.html">Dashboard</a></li>
+                            <li><a  href="index.php">Dashboard</a></li>
                             <li class="dropdown">
                               <a class="dropdown-toggle menu-top-active" data-toggle="dropdown" href="#">Cadastros
                               <span class="caret"></span></a>
@@ -147,6 +129,7 @@ function decryptIt( $q ) {
                                 <li><a class="menu-section" href="cad_playlist.php">Cadastro de PlayList</a></li>
                                 <li><a class="menu-section menu-top-active" href="cad_download.php">Cadastro de Downloads</a></li>
                                 <li><a class="menu-section" href="cad_usuarios.php">Cadastro de Usuários</a></li>
+                                <li><a class="menu-section" href="cad-musicaradio.php">Cadastro de Musicas da Rádio</a></li>
                                 <li><a class="menu-section" href="#">Cadastro de Noticias</a></li>
                               </ul>
                             </li>
@@ -182,14 +165,7 @@ function decryptIt( $q ) {
 
                     <form name="pesquisa" id="pesquisa" method="post" action="">
                              <div class="col-md-6">
-                                 <div class="input-group h2">
-                                    <hr>
-                                     <span class="input-group-btn">
-                                         <button class="btn btn-primary" type="submit">
-                                             <span class="glyphicon glyphicon-search"></span>
-                                         </button>
-                                     </span>
-                                 </div>
+
                              </div>
                     </form>
 

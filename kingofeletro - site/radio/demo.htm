@@ -12,7 +12,7 @@
 //<![CDATA[
 
 $(document).ready(function(){
-
+var id = "#jquery_jplayer_1";
 	$("#jquery_jplayer_1").jPlayer({
 		ready: function () {
 			var data = $.ajax({
@@ -20,7 +20,7 @@ $(document).ready(function(){
 			  async: false
 			 }).responseText;
 
-		    var string = data.split('|');
+		ar string = data.split('|');
 			$(this).jPlayer("setMedia", {
 				mp3: string[0]
 			}).jPlayer("play");
@@ -44,7 +44,9 @@ $(document).ready(function(){
 	    },
 		swfPath: "js",
 		supplied: "mp3"
-	});
+	}
+	var myFix = new jPlayerAndroidFix(id, string);
+);
 });
 //]]>
 </script>
@@ -52,7 +54,7 @@ $(document).ready(function(){
 <body>
 		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
 
-		<div class="jp-audio">
+		<div class="jp-audio" align="center">
 			<div class="jp-type-single">
 				<div id="jp_interface_1" class="jp-interface">
 					<ul class="jp-controls">

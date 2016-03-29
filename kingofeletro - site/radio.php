@@ -42,14 +42,22 @@
 
 				<section id="main" class="wrapper">
 				<div class="container">
-
 					<header class="major">
 						<h2>Rádio King of Eletro Online</h2>
 					</header>
-					<div class="major">
-						<div class="container">
-						<iframe lass="major" src="radio/demo.htm" width="100%"></iframe>
-					</div>
+						<div class="container" width="100%" height="100%">
+							<?
+												include "config.php";
+
+												$sql = mysql_query("SELECT * FROM radio where ativo = 'Ativada'");
+
+												while($linha = mysql_fetch_array($sql)){
+												$embed= $linha["embed"];
+
+												echo $embed;
+											}
+											mysql_close($conexao);
+											?>
 					</div>
 				</div>
 	</section>
@@ -105,13 +113,10 @@
 					<div class="4u$ 12u$(medium)">
 						<ul class="icons">
 							<li>
-								<a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
+								<a href="https://www.facebook.com/Kingofeletro/" target="_blank" class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
 							</li>
 							<li>
-							<a href="https://plus.google.com/b/108172637382157928790/108172637382157928790/posts?gmbpt=true&pageId=108172637382157928790&hl=pt-BR"  target="_blank" class="icon rounded fa-google-plus"><span  class="label">Google+</span></a>
-							</li>
-							<li>
-								<a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>
+									<a href="https://plus.google.com/b/108172637382157928790/108172637382157928790/posts?gmbpt=true&pageId=108172637382157928790&hl=pt-BR"  target="_blank" class="icon rounded fa-google-plus"><span  class="label">Google+</span></a>
 							</li>
 						</ul>
 					</div>

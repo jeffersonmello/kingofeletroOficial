@@ -11,7 +11,7 @@ $playermusica = "";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="King of Eletro, Rádio Online, ouça músicas online e download das melhores músicas">
   <meta name="author" content="Jefferson Mello Olynyki">
-		<title>King of Eletro - Oficial</title>
+		<title>King of Eletro | Músicas</title>
     <link rel="icon" type="image/png" href="favicon.png" />
 
 		<!-- Mobile Specific Metas
@@ -71,21 +71,66 @@ $playermusica = "";
 
 					</header>
 
-					<a href="#" class="image fit"><img width="600px" height="193px"src="images/playlist.png" alt="" /></a>
+					<a href="#" class="image fit"><img width="600px" height="193px"src="images/playlist.png" alt="Playlists King of Eletro" /></a>
 
 			<!-- Player Principal
 				–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <div class="container" width="100%" height="100%">
 						<header class="major">
-							<?php 	echo	"<p><audio style='display:none' id='principal' controls='controls' loop preload='preload title='$playertitulo'> <source type='audio/ogg' src='$playermusica' /> <source type='audio/mpeg' src='$playermusica' /> <a href='$musicalink'></a> </audio></p>"; ?>
+							<audio id="audio"  src="musicas/0.mp3" controls="controls" autoplay="autoplay"  onended="proxima('audio')" align=""> </audio>
+            <div class="table-wrapper major">
+              <table>
+                <thead>
+                    <tr>
+                      <th class="actions"></th>
+                    </tr>
+                </thead>
+                  <tbody>
+                    <tr>
+                      <td class="actions">
+                        <a class="button small icon fa-play" onClick="resume()"> Resume</a>
+                        <a class="button small icon fa-pause" onClick="pausar('audio')"> Pause</a>
+                        <a class="button small icon fa-step-backward" onClick="anterior('audio')"> Anterior</a>
+                        <a class="button small icon fa-step-forward" onClick="proxima('audio')"> Próximo</a>
+                        <a class="button small icon fa-volume-up" onClick="aumentar_vomume('audio')"> + </a>
+                        <a class="button small icon fa-volume-down" onClick="diminuir_volume('audio')"> - </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                  </table>
+                </div>
 						</header>
+        </div>
 
 		 <!-- Scripts do Player
 							–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 				<script>
-				function tocar(id_do_audio) {
-					var arquivo_de_midia=document.getElementById(id_do_audio);
+        var i;
+				function tocar(mus) {
+          var arquivo_de_midia=document.getElementById('audio');
+          i= mus;
+          nextSong = "musicas/"+mus+".mp3";;
+					arquivo_de_midia.src = nextSong;
 					arquivo_de_midia.play();
 				}
+        function proxima(id_do_audio) {
+					var arquivo_de_midia=document.getElementById(id_do_audio);
+					i = i+1;
+					nextSong = "musicas/"+i+".mp3";
+					arquivo_de_midia.src = nextSong;
+					arquivo_de_midia.play();
+				}
+        function anterior(id_do_audio) {
+					var arquivo_de_midia=document.getElementById(id_do_audio);
+					i = i-1;
+					nextSong = "musicas/"+i+".mp3";
+					arquivo_de_midia.src = nextSong;
+					arquivo_de_midia.play();
+				}
+        function resume(id_do_audio) {
+          var arquivo_de_midia=document.getElementById('audio');
+          arquivo_de_midia.play();
+        }
 				function pausar(id_do_audio) {
 					var arquivo_de_midia=document.getElementById(id_do_audio);
 					arquivo_de_midia.pause();
@@ -118,9 +163,6 @@ $playermusica = "";
                       <a class="button alt active" href="#one">Playlist's</a>
                     </li>
                     <li>
-                      <a class="button alt" href="#two">Spotify</a>
-                    </li>
-                    <li>
                       <a class="button alt" href="#three">Downloads</a>
                     </li>
                   </ul>
@@ -134,11 +176,9 @@ $playermusica = "";
 											<table>
 													<thead>
 															<tr>
-																<th>#</th>
 																<th>Titulo</th>
 																<th>Artista</th>
 																<th>Album</th>
-																<th style='display:none'>Player</th>
 																<th class="actions">Ações</th>
 																<th>Download</th>
 														  	</tr>
@@ -147,32 +187,27 @@ $playermusica = "";
 <?
 					include "config.php";
 
-					$sql = mysql_query("SELECT * FROM musicas_playlist limit 50");
+					$sql = mysql_query("SELECT * FROM musicas_playlist order by guid asc limit 50");
 					while($linha = mysql_fetch_array($sql)){
+            $linkplay= $linha["linkplay"];
+						$download= $linha["download"];
 						$guid=$linha["guid"];
 						$arte= $linha["arte_album"];
 						$titulo= $linha["titulo"];
 						$artista= $linha["artista"];
 						$album = $linha["album"];
-						$linkplay= $linha["linkplay"];
-						$download= $linha["download"];
 
-
+            //$guid33 = $guid;
+            //$guid = $linkplay;
+            $mus = $linkplay;
 
 		echo	"<tr>";
-		echo	"<td width='160px'><span class='image left'><img src='arte/$arte' alt='' /></td>";
 		echo	"<td>$titulo</td>";
 		echo	"<td>$artista</td>";
 		echo	"<td>$album</td>";
-		echo	"<td style='display:none'><audio id='$guid' controls='controls' loop preload='preload title='$titulo'> <source type='audio/ogg' src='$linkplay' /> <source type='audio/mpeg' src='$linkplay' /> <a href='$musicalink'></a> </audio></td>";
 		echo  "<td class='actions'>";
-		echo  "<a class='button small icon fa-play' onClick='tocar($guid);' > Play</a>";
+		echo  "<a class='button small icon fa-play' onClick='tocar($mus)' > Play</a>";
 		echo  "<a> </a>";
-		echo  "<a class='button small icon fa-pause' onClick='pausar($guid)'> Pause</a>";
-		echo  "<a> </a>";
-		echo  "<a class='button small icon fa-volume-up' onClick='aumentar_vomume($guid)'> Vol +</a>";
-		echo  "<a> </a>";
-		echo  "<a class='button small icon fa-volume-down' onClick='diminuir_volume($guid)'> Vol -</a>";
 		echo  "</td>";
 		echo  "<td><a href='$downloadlink' class='button icon fa-download'>Download</a></td>";
 		echo 	"</tr>";
@@ -189,14 +224,11 @@ mysql_close($conexao);
 </div>
 </div>
 
-<div class="tab-pane" id="two">
-  <div class="container" width="100%" height="100%">
-		<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3A12149943521%3Aplaylist%3A2Kj4ph6Hi2Uo51jyx8jtuL" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>
-</div>
-</div>
+
 
 <div class="tab-pane" id="three">
   <div class="container" width="100%" height="100%">
+    <h3 class="major"> Download de Músicas </h3>
   <iframe src="admin/tabeladownloads.php" width="100%" height="800px"></iframe>
   </div>
 </div>
@@ -248,19 +280,16 @@ mysql_close($conexao);
 							<li>&copy; King of Eletro. All rights reserved.</li>
 						</ul>
 					</div>
-					<div class="4u$ 12u$(medium)">
-						<ul class="icons">
-							<li>
-								<a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
-							</li>
-							<li>
-								<a href="https://plus.google.com/b/108172637382157928790/108172637382157928790/posts?gmbpt=true&pageId=108172637382157928790&hl=pt-BR"  target="_blank" class="icon rounded fa-google-plus"><span  class="label">Google+</span></a>
-							</li>
-							<li>
-								<a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>
-							</li>
-						</ul>
-					</div>
+          <div class="4u$ 12u$(medium)">
+            <ul class="icons">
+              <li>
+                <a href="https://www.facebook.com/Kingofeletro/" target="_blank" class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
+              </li>
+              <li>
+                  <a href="https://plus.google.com/b/108172637382157928790/108172637382157928790/posts?gmbpt=true&pageId=108172637382157928790&hl=pt-BR"  target="_blank" class="icon rounded fa-google-plus"><span  class="label">Google+</span></a>
+              </li>
+            </ul>
+          </div>
 				</div>
 			</div>
 		</footer>

@@ -179,11 +179,11 @@ $guidDelete;
                                   <table id="example" class="table table-hover table-bordered" cellspacing="0" cellpadding="0">
                                       <thead>
                                           <tr>
-                                              <th>#</th>
+                                              <th width="45px">#</th>
                                               <th>URL</th>
                                               <th>Artista</th>
                                               <th>Titulo</th>
-                                              <th class="actions">Ações</th>
+                                              <th width="65px" class="actions">Ações</th>
                                            </tr>
                                       </thead>
                                       <tbody>
@@ -212,11 +212,11 @@ $guidDelete;
 
 // Tabela
                     echo  "<tr>";
-                    echo  "<td>$guid1</td>";
+                    echo  "<td width='45px'>$guid1</td>";
                     echo  "<td>$url1</td>";
                     echo  "<td>$artista1</td>";
                     echo  "<td>$titulo1</td>";
-                    echo  "<td class='actions'>";
+                    echo  "<td width='65px' class='actions'>";
                     echo  "<a class='btn btn-success btn-xs glyphicon glyphicon-eye-open' href='view.html' data-toggle='modal' data-target='#$guid1'></a>";
                     echo  "<a> </a>";
                     echo  "<a class='btn btn-warning btn-xs glyphicon glyphicon-pencil' href='edit.html' data-toggle='modal' data-target='#$guidEdit'></a>";
