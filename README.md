@@ -1,7 +1,9 @@
 # kingofeletroOficial
  Projeto King of Eletro
  
- * Site - Skeleton CSS
+ http://kingofeletro.com.br
+ 
+ * Site - Bootstrap 4
  * Paienel Admin - Bootstrap
  * Player JS
- * Player desktop delphi
+ * Player Web - KOE Player - Bootstrap	

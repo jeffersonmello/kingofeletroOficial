@@ -3,10 +3,12 @@ use pristons_king;
 create table musicas_home (
 	guid integer not null auto_increment,
 	titulo varchar(200),
-	texto varchar(200),
-	downloadlink varchar(100),
+	texto varchar(500),
+	downloadlink varchar(800),
 	nomearquivo varchar(100),
 	embed varchar(500),
+	curtir integer default 0,
+	ncurtir integer default 0,
 	primary key (guid)
 );
 
@@ -19,19 +21,6 @@ create table usuario (
 	job varchar(200) not null,
 	nivel TINYINT( 3 ) NOT NULL ,
 	PRIMARY KEY (guid)
-);
-
-create table musicas_playlist (
-	guid int not null auto_increment,
-	arte_album varchar(255),
-	titulo varchar(255),
-	artista varchar(255),
-	album varchar(255),
-	linkplay varchar(255),
-	linkdownload varchar(255),
-	gostei int,
-	ngostei int,
-	primary key (guid)
 );
 
 create table radio (
@@ -58,3 +47,51 @@ CREATE TABLE `songs` (
   `title` varchar(250) NOT NULL,
   PRIMARY KEY (`song_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+
+/* TABELA NOVA PRINCIPAL ONDE VAI ARMAZENAR TODOS OS DADOS DAS MUSICAS E DIRETOS */
+create table sistem_musics(
+	guid int not null auto_increment,
+	eguid int not null,
+	numero int not null,
+	duration varchar(255) not null,
+	directory varchar(750) not null,
+	artista varchar(500),
+	titulo varchar(500),
+	share int,
+	primary key (guid)
+);
+
+create table sistem_user(
+	guid int not null auto_increment,
+	eguid int not null,
+	usuario varchar(500) not null,
+	senha varchar(500) not null,
+	nome varchar(500),
+	primary key (guid)
+);
+
+create table sistem_listsongs (
+	guid int not null auto_increment,
+	eguid int not null,
+	guid_playlist int not null,
+	guid_music int not null,
+	primary key (guid),
+	foreign key (guid_music) references sistem_musics (guid),
+	foreign key (guid_playlist) references sistem_playlist
+);
+
+create table sistem_playlist (
+	guid int not null auto_increment,
+	eguid int not null,
+	nomeplaylist varchar(500) not null,
+	guiduser int not null,
+	primary key (guid),
+	foreign key (guiduser) references sistem_user (guid)
+);
+
+create table visit(
+	guid int not null auto_increment,
+	cont bigint default 0,
+	primary key (guid)
+);
